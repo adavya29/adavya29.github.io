@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Books & Materials | Study Hub</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: #02050b;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: #fff;
+    background:
+        radial-gradient(circle at 50% 28%, rgba(0, 52, 135, .20), transparent 34%),
+        radial-gradient(circle at 16% 72%, rgba(0, 35, 90, .13), transparent 28%),
+        linear-gradient(180deg, #01040a 0%, #020711 48%, #02050b 100%);
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 14px;
+    width: min(1180px, calc(100% - 32px));
+    margin: 14px auto 0;
+    padding: 12px 18px;
+    background: rgba(3, 8, 18, .82);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.2);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 750;
+    transition: .2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,.22);
+    transform: translateX(-2px);
+}
+
+.nav-title {
+    font-weight: 850;
+    font-size: 17px;
+    letter-spacing: .5px;
+}
+
+/* CONTAINER */
+.container {
+    width: min(1180px, 92%);
+    margin: 30px auto 60px;
+}
+
+/* SEARCH */
+.search-wrapper {
+    max-width: 650px;
+    margin: 15px auto 35px;
+    display: none;
+}
+
+.search-box {
+    width: 100%;
+    padding: 16px 22px;
+    border-radius: 18px;
+    background: rgba(8,17,32,.85);
+    border: 1px solid rgba(255,255,255,.18);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+    transition: .2s;
+}
+
+.search-box:focus {
+    border-color: rgba(70,170,255,.65);
+    box-shadow: 0 0 0 4px rgba(0,130,255,.15);
+}
+
+/* CLASS FOLDERS VIEW */
+.folders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.folder-card {
+    background: linear-gradient(145deg, #071e3d, #030f21);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 22px;
+    padding: 35px 24px;
+    cursor: pointer;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    text-align: center;
+}
+
+.folder-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(90,170,255,.5);
+    box-shadow: 0 20px 45px rgba(0,0,0,.45), 0 0 25px rgba(0,120,255,.15);
+}
+
+.folder-icon {
+    font-size: 55px;
+    margin-bottom: 14px;
+}
+
+.folder-card h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.folder-card p {
+    color: rgba(255,255,255,.65);
+    font-size: 14px;
+}
+
+/* BOOKS GRID VIEW */
+.books-view {
+    display: none;
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-head h2 {
+    font-size: 24px;
+}
+
+.close-category {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.18);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.close-category:hover {
+    background: rgba(255,255,255,.2);
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background: linear-gradient(145deg, #08172c, #030b17);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(100,180,255,.45);
+}
+
+.book-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.book-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.book-title {
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+.book-desc {
+    color: rgba(255,255,255,.60);
+    font-size: 13px;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.book-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #0066ff, #0044cc);
+    color: white;
+    padding: 12px;
+    border-radius: 13px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: .5px;
+    border: 1px solid rgba(255,255,255,.2);
+    transition: .2s ease;
+}
+
+.book-btn:hover {
+    background: linear-gradient(135deg, #1a75ff, #0055ff);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,102,255,.35);
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="../" class="back-btn">← Back to Hub</a>
+        <span class="nav-title">📚 Study Books</span>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- SEARCH BAR -->
+    <div class="search-wrapper" id="searchWrapper">
+        <input 
+            type="text" 
+            id="bookSearch" 
+            class="search-box" 
+            placeholder="🔎 Search by book name or subject..."
+        >
+    </div>
+
+    <!-- 1. CLASS SELECTION FOLDERS -->
+    <div class="folders-grid" id="foldersSection">
+        <div class="folder-card" onclick="openClass10()">
+            <div class="folder-icon">📁</div>
+            <h2>Class 10th</h2>
+            <p>23 Reference Books, Question Banks, Solutions & Notes</p>
+        </div>
+    </div>
+
+    <!-- 2. CLASS 10 BOOKS DISPLAY -->
+    <div class="books-view" id="class10View">
+
+        <div class="section-head">
+            <h2>📖 Class 10th Books Collection</h2>
+            <button class="close-category" onclick="closeClass10()">← Choose Another Class</button>
+        </div>
+
+        <div class="books-grid" id="booksGrid">
+
+            <!-- 1 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🔬</span><span class="book-title">1'o Clock Revision Science by Kriti Sharma</span></div>
+                <p class="book-desc">Quick Revision Notes for Class 10 Science.</p>
+                <a href="https://vplink.in/sNR8G" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 2 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">360 SST by Kriti Didi</span></div>
+                <p class="book-desc">Complete Class 10 Social Science Study Material.</p>
+                <a href="https://vplink.in/oFa2h" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 3 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📐</span><span class="book-title">All in One - Mathematics Class 10</span></div>
+                <p class="book-desc">Complete Theory, NCERT & Practice Questions.</p>
+                <a href="https://vplink.in/6FDhsg" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 4 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">All in One Latest Edition SST Class 10th</span></div>
+                <p class="book-desc">Latest Syllabus Class 10 Social Science Book.</p>
+                <a href="https://vplink.in/gy5Yfv" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 5 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📐</span><span class="book-title">Arihant All in One Mathematics Class 10</span></div>
+                <p class="book-desc">Comprehensive Class 10 Mathematics Guide.</p>
+                <a href="https://vplink.in/Ybx8N" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 6 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📦</span><span class="book-title">Class 10 QCB Combo (Maths, Science, SST, Eng)</span></div>
+                <p class="book-desc">All-in-One Question Bank Combo.</p>
+                <a href="https://vplink.in/u06W" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 7 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🔬</span><span class="book-title">Class 10 Science Oswaal Question Bank</span></div>
+                <p class="book-desc">Oswaal Class 10 Science Practice & PYQs.</p>
+                <a href="https://vplink.in/ghF9" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 8 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">⚡</span><span class="book-title">S Chand Science Part 1 Physics Class 10</span></div>
+                <p class="book-desc">Lakhmir Singh & Manjit Kaur Physics.</p>
+                <a href="https://vplink.in/IRIdRj" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 9 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📝</span><span class="book-title">Class 10 Social Science Oswaal SQP</span></div>
+                <p class="book-desc">Sample Question Papers & Marking Scheme.</p>
+                <a href="https://vplink.in/yImUBr" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 10 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📘</span><span class="book-title">Complete NCERT Exemplar Class 10</span></div>
+                <p class="book-desc">NCERT Exemplar Problems & Solutions.</p>
+                <a href="https://vplink.in/k9qi" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 11 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📐</span><span class="book-title">Educart Maths SPQ Class 10</span></div>
+                <p class="book-desc">Educart Sample Paper Question Bank.</p>
+                <a href="https://vplink.in/ZNEx" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 12 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">Educart SST Question Bank 2025</span></div>
+                <p class="book-desc">Educart Question Bank for Social Science.</p>
+                <a href="https://vplink.in/KR5X3X" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 13 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📖</span><span class="book-title">Kriti Sharma English 360</span></div>
+                <p class="book-desc">Complete Class 10 English Notes & Guide.</p>
+                <a href="https://vplink.in/gE9H" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 14 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🎯</span><span class="book-title">Mathematics Made Easy by Ritik Mishra (PW)</span></div>
+                <p class="book-desc">PW Class 10 Maths Revision Notes.</p>
+                <a href="https://vplink.in/wiVrs" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 15 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📐</span><span class="book-title">Maths PW Question Bank (2026)</span></div>
+                <p class="book-desc">PW Maths Question Bank with Solutions.</p>
+                <a href="https://vplink.in/k4i9b1" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 16 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📖</span><span class="book-title">PW English QCB 2026 (Part-1)</span></div>
+                <p class="book-desc">PW English Question & Concept Bank.</p>
+                <a href="https://vplink.in/Z2yiul" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 17 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📄</span><span class="book-title">PW Real Feel Sample Papers Class 10</span></div>
+                <p class="book-desc">PW Board Exam Style Mock Tests.</p>
+                <a href="https://vplink.in/rAeI" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 18 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">PW Social Science Sample Paper Class 10</span></div>
+                <p class="book-desc">SST Practice Paper by Physics Wallah.</p>
+                <a href="https://vplink.in/EQG01" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 19 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">📘</span><span class="book-title">RD Sharma Class 10</span></div>
+                <p class="book-desc">Complete RD Sharma Maths Textbook & Solutions.</p>
+                <a href="https://vplink.in/btW" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 20 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🧪</span><span class="book-title">S Chand Science Class 10 Chemistry</span></div>
+                <p class="book-desc">Lakhmir Singh & Manjit Kaur Chemistry.</p>
+                <a href="https://vplink.in/RiiQ8" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 21 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🔬</span><span class="book-title">Science Oswaal QB 2026-27</span></div>
+                <p class="book-desc">Latest Oswaal Science Question Bank.</p>
+                <a href="https://vplink.in/6uSQd" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 22 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">Social Science 360 By Kriti Sharma</span></div>
+                <p class="book-desc">Handwritten Notes & Diagrams for SST.</p>
+                <a href="https://vplink.in/TVC" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+            <!-- 23 -->
+            <div class="book-card">
+                <div class="book-top"><span class="book-icon">🌍</span><span class="book-title">SST Class 10 All in One Arihant</span></div>
+                <p class="book-desc">Complete Arihant SST Class 10 PDF.</p>
+                <a href="https://vplink.in/sDBKB" target="_blank" rel="noopener noreferrer" class="book-btn">ACCESS BOOK ↗</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function openClass10() {
+    document.getElementById("foldersSection").style.display = "none";
+    document.getElementById("class10View").style.display = "block";
+    document.getElementById("searchWrapper").style.display = "block";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeClass10() {
+    document.getElementById("class10View").style.display = "none";
+    document.getElementById("searchWrapper").style.display = "none";
+    document.getElementById("foldersSection").style.display = "grid";
+}
+
+// REAL-TIME SEARCH FILTER
+document.getElementById("bookSearch").addEventListener("input", function() {
+    const query = this.value.toLowerCase().trim();
+    const cards = document.querySelectorAll("#booksGrid .book-card");
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>
