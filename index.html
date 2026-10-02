@@ -436,6 +436,19 @@ body {
     background: linear-gradient(145deg, #0b2545, #133c6d);
 }
 
+/* UNACADEMY CARD THEME */
+.unacademy {
+    background: 
+        radial-gradient(circle at 80% 20%, rgba(8, 189, 128, 0.22), transparent 35%),
+        linear-gradient(145deg, #022016 0%, #063826 50%, #08bd80 100%);
+    border-color: rgba(8, 189, 128, 0.35);
+}
+
+.unacademy:hover {
+    border-color: rgba(8, 189, 128, 0.65);
+    box-shadow: 0 25px 55px rgba(0,0,0,.45), 0 0 28px rgba(8, 189, 128, 0.2);
+}
+
 .science-fun {
     background:
         radial-gradient(circle at 80% 18%, rgba(255,245,170,.20), transparent 28%),
@@ -926,6 +939,9 @@ footer {
     <button class="filter" onclick="filterCards('vibrant', this)">
         Vibrant Academy
     </button>
+    <button class="filter" onclick="filterCards('unacademy', this)">
+        Unacademy
+    </button>
 </div>
 
 <!-- =========================
@@ -1011,6 +1027,18 @@ footer {
                 <h2>Vibrant Academy</h2>
                 <p>Explore Vibrant Academy Resources</p>
                 <button class="launch" onclick="openSitePopup('https://pwspidey.live/study/vibrant')">
+                    LAUNCH →
+                </button>
+            </div>
+        </div>
+
+        <!-- UNACADEMY CARD -->
+        <div class="card unacademy" data-category="unacademy">
+            <img src="unacademy.png" alt="Unacademy Logo" class="card-image" loading="lazy" decoding="async">
+            <div class="card-content">
+                <h2>Unacademy</h2>
+                <p>Explore Unacademy Resources</p>
+                <button class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">
                     LAUNCH →
                 </button>
             </div>
