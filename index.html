@@ -18,12 +18,58 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <link rel="icon" type="image/png" href="https://adavya29.github.io/preview.png">
-    
-<!-- FIREBASE -->
+
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- FIREBASE SDK (Preserved for future authentication activation) -->
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
 
 <style>
+/* ==========================================================================
+   PREMIUM COLOR SYSTEM & DESIGN TOKENS
+   Deep Navy -> Royal Blue -> Electric Blue -> Soft Violet
+   ========================================================================== */
+:root {
+    --bg-base: #030712;
+    --navy-deep: #07111F;
+    --blue-royal: #2563EB;
+    --blue-electric: #38BDF8;
+    --violet-soft: #7C3AED;
+    --lavender-subtle: #A78BFA;
+
+    --bg-card: rgba(7, 17, 31, 0.88);
+    --glass-border: rgba(56, 189, 248, 0.12);
+    --glass-border-hover: rgba(56, 189, 248, 0.32);
+
+    /* Gradients */
+    --brand-gradient: linear-gradient(135deg, #2563EB 0%, #4F46E5 50%, #7C3AED 100%);
+    --brand-gradient-text: linear-gradient(135deg, #38BDF8 0%, #60A5FA 45%, #A78BFA 100%);
+
+    /* Ambient Glow Palette */
+    --aura-blue: rgba(37, 99, 235, 0.28);
+    --aura-electric: rgba(56, 189, 248, 0.18);
+    --aura-violet: rgba(124, 58, 237, 0.22);
+
+    /* Typography */
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Radii & Timing */
+    --radius-card: 22px;
+    --radius-pill: 9999px;
+    --radius-btn: 14px;
+    --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RESET & FOUNDATIONS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -32,74 +78,123 @@
 
 html {
     scroll-behavior: smooth;
-    background: #02050b;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    color: #fff;
-    background:
-        radial-gradient(circle at 50% 28%, rgba(0, 52, 135, .20), transparent 34%),
-        radial-gradient(circle at 16% 72%, rgba(0, 35, 90, .13), transparent 28%),
-        radial-gradient(circle at 86% 70%, rgba(0, 42, 105, .12), transparent 28%),
-        linear-gradient(180deg, #01040a 0%, #020711 48%, #02050b 100%);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
     overflow-x: hidden;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+body {
+    font-family: var(--font-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
 
+/* Background Atmosphere */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 82% 24%, rgba(124, 58, 237, 0.08), transparent 36%),
+        radial-gradient(circle at 50% 80%, rgba(37, 99, 235, 0.06), transparent 42%),
+        linear-gradient(180deg, #02050b 0%, #030816 50%, #02050e 100%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Ambient Grid Texture */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 56px 56px;
+    z-index: -1;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at 50% 40%, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, black 40%, transparent 85%);
+}
+
+.gradient-text {
+    background: var(--brand-gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   FLOATING GLASS NAVBAR
+   ========================================================================== */
 .navbar {
     position: sticky;
     top: 14px;
     z-index: 1000;
-    width: min(1180px, calc(100% - 44px));
+    width: min(1180px, calc(100% - 32px));
     margin: 14px auto 0;
-    padding: 11px 12px;
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(7, 17, 31, 0.75);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all var(--transition-smooth);
+}
 
-    background: rgba(3, 8, 18, .78);
-    border: 1px solid rgba(255,255,255,.13);
-    border-radius: 22px;
-
-    box-shadow:
-        0 18px 45px rgba(0,0,0,.34),
-        inset 0 1px 0 rgba(255,255,255,.035);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+.navbar.scrolled {
+    background: rgba(6, 11, 23, 0.9);
+    border-color: rgba(56, 189, 248, 0.22);
+    box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.6), 0 0 20px -8px rgba(37, 99, 235, 0.25);
 }
 
 .nav-content {
-    max-width: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    font-size: 19px;
-    font-weight: 900;
-    letter-spacing: .4px;
-    padding: 10px 14px;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 14px;
-    background: rgba(255,255,255,.035);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(124, 58, 237, 0.22));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 1.1rem;
 }
 
 .nav-links {
     display: flex;
-    gap: 31px;
+    gap: 28px;
+    align-items: center;
 }
 
 .nav-links a {
-    color: rgba(255,255,255,.68);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-    transition: .2s ease;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: color var(--transition-smooth), transform var(--transition-smooth);
 }
 
 .nav-links a:hover {
@@ -107,509 +202,582 @@ body {
     transform: translateY(-1px);
 }
 
-/* =========================
-   LOGIN BUTTON / PROFILE
-========================= */
-
-.login-btn,
-.profile-btn {
-    border: 1px solid rgba(91,158,255,.35);
-    background: linear-gradient(180deg, rgba(20,43,76,.72), rgba(7,20,39,.78));
-    color: white;
-    padding: 10px 17px;
-    border-radius: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: .2s ease;
-}
-
-.login-btn:hover,
-.profile-btn:hover {
-    background: rgba(255,255,255,.18);
-    transform: translateY(-1px);
-}
-
-.profile-area {
-    position: relative;
-}
-
-.profile-btn {
-    display: flex;
+.nav-cta {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(124, 58, 237, 0.18));
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    transition: all var(--transition-smooth);
 }
 
-.profile-icon {
-    font-size: 19px;
+.nav-cta:hover {
+    border-color: rgba(56, 189, 248, 0.55);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.32), rgba(124, 58, 237, 0.32));
+    color: #fff;
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.35);
 }
 
-.profile-menu {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    width: 190px;
-    padding: 12px;
-    border-radius: 17px;
-    background: rgba(5,18,42,.97);
-    border: 1px solid rgba(255,255,255,.16);
-    box-shadow: 0 20px 50px rgba(0,0,0,.4);
-    display: none;
-}
-
-.profile-menu.show {
-    display: block;
-    animation: profileMenu .18s ease;
-}
-
-@keyframes profileMenu {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.profile-name {
-    padding: 8px 9px 12px;
-    font-weight: 800;
-    border-bottom: 1px solid rgba(255,255,255,.12);
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.logout-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 11px;
-    background: rgba(255,70,70,.12);
-    color: #ff8585;
-    cursor: pointer;
-    font-weight: 800;
-}
-
-.logout-btn:hover {
-    background: rgba(255,70,70,.22);
-}
-
-/* =========================
-   HERO
-========================= */
-
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
 .hero {
     text-align: center;
-    min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 38px 20px 14px;
+    justify-content: center;
+    padding: 68px 20px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.hero-pill .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
 }
 
 .welcome {
-    font-size: clamp(48px, 6.8vw, 86px);
-    font-weight: 950;
-    letter-spacing: 3px;
-    line-height: 1.05;
-
-    background: linear-gradient(
-        90deg,
-        #ffffff,
-        #66bfff,
-        #ffffff
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-
-    text-shadow:
-        0 12px 45px rgba(0,120,255,.17),
-        0 0 32px rgba(0,150,255,.14);
-
-    animation: welcomeGlow 1.4s ease-out;
-}
-
-@keyframes welcomeGlow {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    font-size: clamp(2.4rem, 5.8vw, 4.4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 12px;
 }
 
 .hero p {
-    margin-top: 8px;
-    color: rgba(214,224,242,.70);
-    font-size: 16px;
+    color: var(--text-secondary);
+    font-size: clamp(0.98rem, 2vw, 1.15rem);
+    max-width: 580px;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
+/* ==========================================================================
+   SEARCH BAR
+   ========================================================================== */
 .search-area {
-    max-width: 760px;
-    margin: 12px auto 20px;
-    padding: 0 20px;
+    max-width: 720px;
+    width: calc(100% - 32px);
+    margin: 28px auto 26px;
+    position: relative;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(7, 17, 31, 0.65);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-smooth);
+}
+
+.search-wrapper:focus-within {
+    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(7, 17, 31, 0.9);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(37, 99, 235, 0.25);
+}
+
+.search-icon-btn {
+    position: absolute;
+    left: 20px;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    pointer-events: none;
+    transition: color var(--transition-smooth);
+}
+
+.search-wrapper:focus-within .search-icon-btn {
+    color: #38bdf8;
 }
 
 .search-box {
     width: 100%;
-    padding: 16px 22px;
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 17px;
+    padding: 17px 20px 17px 54px;
+    background: transparent;
+    border: none;
     outline: none;
-    background: rgba(8,15,27,.76);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    color: white;
-    font-size: 16px;
-    box-shadow:
-        0 18px 42px rgba(0,0,0,.24),
-        inset 0 1px 0 rgba(255,255,255,.025);
-    transition: .25s ease;
-}
-
-.search-box:focus {
-    border-color: rgba(90,160,255,.45);
-    background: rgba(8,17,32,.88);
-    box-shadow:
-        0 0 0 4px rgba(0,110,255,.07),
-        0 18px 45px rgba(0,0,0,.28);
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    font-family: inherit;
+    font-weight: 500;
 }
 
 .search-box::placeholder {
-    color: rgba(255,255,255,.65);
+    color: var(--text-muted);
 }
 
-/* =========================
-   FILTERS
-========================= */
+/* ==========================================================================
+   CATEGORY / FILTER BUTTONS
+   ========================================================================== */
+.filters-container {
+    max-width: 1200px;
+    margin: 0 auto 36px;
+    padding: 0 16px;
+}
 
 .filters {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
-    margin: 0 auto 32px;
-    padding: 0 20px;
+    gap: 9px;
+    padding: 4px 6px;
 }
 
 .filter {
-    border: 1px solid rgba(255,255,255,.11);
-    background: rgba(10,15,25,.72);
-    backdrop-filter: blur(5px);
-    color: rgba(255,255,255,.70);
+    white-space: nowrap;
+    border: 1px solid var(--glass-border);
+    background: rgba(7, 17, 31, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-secondary);
     padding: 9px 18px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     cursor: pointer;
-    font-weight: 700;
-    font-size: 13px;
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
+    font-weight: 600;
+    font-size: 0.83rem;
+    font-family: inherit;
+    letter-spacing: -0.1px;
+    transition: all var(--transition-smooth);
+    user-select: none;
 }
 
 .filter:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,.08);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(56, 189, 248, 0.25);
+    transform: translateY(-1.5px);
 }
 
 .filter.active {
-    color: #172033;
-    background: #eef3fb;
-    box-shadow: 0 10px 28px rgba(80,130,220,.15);
+    color: #ffffff;
+    background: var(--brand-gradient);
+    border-color: transparent;
+    box-shadow: 0 10px 25px -6px rgba(37, 99, 235, 0.45);
 }
 
-/* =========================
-   CONTAINER & GRID
-========================= */
-
+/* ==========================================================================
+   STATIC RESPONSIVE GRID LAYOUT
+   ========================================================================== */
 .container {
-    width: min(1200px, 92%);
-    margin: auto;
+    width: min(1280px, calc(100% - 32px));
+    margin: 0 auto;
+    position: relative;
 }
 
+.section-header {
+    margin-bottom: 26px;
+    padding: 0 4px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Multi-column grid: cards naturally flow into rows */
 .resource-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    padding-bottom: 55px;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 26px;
+    padding: 10px 4px 45px;
+    width: 100%;
+    overflow: visible;
 }
 
-/* =========================
-   CARDS
-========================= */
-
+/* ==========================================================================
+   SOPHISTICATED LUXURIOUS CARD & HOVER GLOW
+   Normal: Mostly dark navy glass
+   Hover: translateY(-8px) scale(1.02), soft diffused blue-violet ambient glow
+   ========================================================================== */
 .card {
     position: relative;
-    overflow: hidden;
-    border-radius: 24px;
-    padding: 20px;
-    min-height: 320px;
-    border: 1px solid rgba(255,255,255,.12);
-    box-shadow:
-        0 20px 48px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.08);
-    transition:
-        transform .28s ease,
-        box-shadow .28s ease,
-        border-color .28s ease;
+    border-radius: var(--radius-card);
+    padding: 24px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--transition-smooth), 
+                border-color var(--transition-smooth), 
+                box-shadow var(--transition-smooth);
+    will-change: transform;
+    isolation: isolate;
+    overflow: visible;
 }
 
-.card::after {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top: -100px;
-    right: -80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
-    pointer-events: none;
-}
-
+/* Diffused ambient back-projected glow (Royal Blue + Soft Violet) */
 .card::before {
     content: "";
     position: absolute;
-    top: -120%;
-    left: -35%;
-    width: 65%;
-    height: 350%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.28),
-        transparent
-    );
-    transform: rotate(25deg) translateX(-160%);
-    transition: transform .65s ease;
+    inset: -14px;
+    border-radius: calc(var(--radius-card) + 12px);
+    background: 
+        radial-gradient(circle at 50% 100%, var(--aura-blue), transparent 65%),
+        radial-gradient(circle at 50% 20%, var(--aura-violet), transparent 60%),
+        radial-gradient(circle at 10% 80%, var(--aura-electric), transparent 50%);
+    filter: blur(24px);
+    opacity: 0;
+    z-index: -1;
     pointer-events: none;
-    will-change: transform;
+    transform: translateZ(0);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card:hover::before {
-    transform: rotate(25deg) translateX(160%);
+/* Inner chassis highlight */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.card:hover {
-    transform: translateY(-7px);
-    box-shadow:
-        0 25px 55px rgba(0,0,0,.38),
-        0 0 22px rgba(0,120,255,.08);
-    border-color: rgba(255,255,255,.28);
+/* HOVER BEHAVIOR: Perfectly isolated, zero movement of surrounding cards */
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--glass-border-hover);
+        box-shadow: 
+            0 24px 50px -10px rgba(0, 0, 0, 0.8), 
+            0 0 24px -6px rgba(37, 99, 235, 0.22);
+        z-index: 10;
+    }
+
+    .card:hover::before {
+        opacity: 1;
+        transform: scale(1.03) translateZ(0);
+    }
+
+    .card:hover .card-image-box img,
+    .card:hover .card-emoji-box {
+        transform: scale(1.05);
+        filter: brightness(1.12);
+    }
+
+    .card:hover h2,
+    .card:hover h3 {
+        color: #fff;
+    }
 }
 
-/* CARD COLORS */
-.next {
-    background: linear-gradient(145deg, rgba(0,100,35,.96), rgba(5,175,65,.88));
+/* Touch active state */
+.card:active {
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(56, 189, 248, 0.35);
 }
 
-.mission {
-    background: linear-gradient(145deg, rgba(135,0,0,.96), rgba(235,35,35,.88));
+.card:active::before {
+    opacity: 0.7;
 }
 
-.pw {
-    background: linear-gradient(145deg, #020202, #242424);
+/* Card Internal Layout */
+.card-header-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
-.piott {
-    background: linear-gradient(145deg, #5111b5, #963fff);
-}
-
-.latent {
-    background: linear-gradient(145deg, #151515, #343434);
-}
-
-.vibrant {
-    background: linear-gradient(145deg, #0b2545, #133c6d);
-}
-
-/* UNACADEMY CARD THEME */
-.unacademy {
-    background: 
-        radial-gradient(circle at 80% 20%, rgba(8, 189, 128, 0.22), transparent 35%),
-        linear-gradient(145deg, #022016 0%, #063826 50%, #08bd80 100%);
-    border-color: rgba(8, 189, 128, 0.35);
-}
-
-.unacademy:hover {
-    border-color: rgba(8, 189, 128, 0.65);
-    box-shadow: 0 25px 55px rgba(0,0,0,.45), 0 0 28px rgba(8, 189, 128, 0.2);
-}
-
-/* ROJGAR WITH ANKIT (RWA) CARD THEME */
-.rwa {
-    background: 
-        radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.22), transparent 35%),
-        linear-gradient(145deg, #241400 0%, #452600 50%, #d97706 100%);
-    border-color: rgba(245, 158, 11, 0.35);
-}
-
-.rwa:hover {
-    border-color: rgba(245, 158, 11, 0.65);
-    box-shadow: 0 25px 55px rgba(0,0,0,.45), 0 0 28px rgba(245, 158, 11, 0.25);
-}
-
-.science-fun {
-    background:
-        radial-gradient(circle at 80% 18%, rgba(255,245,170,.20), transparent 28%),
-        linear-gradient(145deg, #5d4700 0%, #9b7500 48%, #d5aa22 100%);
-    border-color: rgba(255,222,91,.38);
-    box-shadow:
-        0 20px 48px rgba(0,0,0,.30),
-        0 0 28px rgba(232,188,35,.08),
-        inset 0 1px 0 rgba(255,255,255,.18);
-}
-
-.science-fun:hover {
-    border-color: rgba(255,232,116,.62);
-    box-shadow:
-        0 25px 55px rgba(0,0,0,.38),
-        0 0 28px rgba(232,188,35,.16);
-}
-
-.science-fun .card-image {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,244,176,.18);
-}
-
-.science-fun .launch {
-    background: rgba(255,255,255,.94);
-    color: #4d3b00;
-    border-color: rgba(255,255,255,.55);
-}
-
-/* CARD IMAGE & CONTENT */
-.card-image,
-.card-img {
+.card-image-box {
     width: 100%;
     height: 145px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image-box img,
+.card-image {
+    width: 82%;
+    height: 82%;
     object-fit: contain;
-    border-radius: 18px;
-    margin-bottom: 16px;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.10);
-    transition: transform .3s ease;
+    transition: transform var(--transition-smooth), filter var(--transition-smooth);
     display: block;
 }
 
-.card:hover .card-image,
-.card:hover .card-img {
-    transform: scale(1.025);
+.card-emoji-box {
+    font-size: 54px;
+    transition: transform var(--transition-smooth), filter var(--transition-smooth);
+    user-select: none;
 }
 
 .card h2, .card h3 {
-    font-size: 21px;
-    margin-bottom: 7px;
-    font-weight: 850;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+    text-align: center;
+    transition: color var(--transition-smooth);
 }
 
 .card p {
-    font-size: 14px;
-    line-height: 1.5;
-    opacity: .84;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    text-align: center;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
+/* Subdued platform hues aligned with blue-violet aesthetic */
+.card.next {
+    background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 70%), var(--bg-card);
+}
+.card.mission {
+    background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.08), transparent 70%), var(--bg-card);
+}
+.card.pw {
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%), var(--bg-card);
+}
+.card.vibrant {
+    background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.1), transparent 70%), var(--bg-card);
+}
+.card.unacademy {
+    background: radial-gradient(circle at 50% 0%, rgba(8, 189, 128, 0.1), transparent 70%), var(--bg-card);
+}
+.card.rwa {
+    background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08), transparent 70%), var(--bg-card);
+}
+.card.science-fun {
+    background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08), transparent 70%), var(--bg-card);
+}
+
+/* ==========================================================================
+   PREMIUM SAAS/EDTECH LAUNCH BUTTON
+   ========================================================================== */
 .launch {
-    display: block;
-    margin-top: 18px;
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
-    padding: 13px 18px;
-    border-radius: 15px;
-    text-align: center;
+    padding: 12px 18px;
+    border-radius: var(--radius-btn);
+    background: rgba(14, 27, 49, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #f1f5f9;
     text-decoration: none;
-    color: white;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.25);
-    font-weight: 850;
-    letter-spacing: 1.4px;
-    backdrop-filter: blur(8px);
+    font-weight: 750;
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
     cursor: pointer;
-    transition:
-        background .2s ease,
-        transform .2s ease,
-        box-shadow .2s ease;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 10px rgba(37, 99, 235, 0.08);
+    transition: transform var(--transition-smooth), 
+                background 0.35s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease, 
+                color 0.2s ease;
+    overflow: hidden;
 }
 
-.launch:hover {
-    background: rgba(255,255,255,.22);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(0,0,0,.18);
+/* Subtle Shimmer Sweep on Launch Button */
+.launch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
 }
 
-/* IMPORTANT & FOOTER */
+@media (hover: hover) {
+    .launch:hover {
+        transform: translateY(-2px) scale(1.03);
+        background: linear-gradient(135deg, #2563EB, #4F46E5, #7C3AED);
+        border-color: rgba(56, 189, 248, 0.55);
+        color: #ffffff;
+        box-shadow: 
+            0 8px 24px -4px rgba(37, 99, 235, 0.45),
+            0 0 16px rgba(56, 189, 248, 0.3);
+    }
+
+    .launch:hover::before {
+        left: 140%;
+    }
+}
+
+.launch:active {
+    transform: scale(0.98);
+}
+
+/* Launch Button Inactive State (for Next Toppers 2 pending URL) */
+.launch.pending-link {
+    cursor: default;
+    opacity: 0.85;
+}
+
+@media (hover: hover) {
+    .launch.pending-link:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 18px -4px rgba(37, 99, 235, 0.35);
+    }
+}
+
+/* ==========================================================================
+   IMPORTANT RESOURCES SECTION
+   ========================================================================== */
 .important {
-    max-width: 900px;
-    margin: 0 auto 48px;
-    padding: 27px 22px;
+    max-width: 860px;
+    margin: 20px auto 55px;
+    padding: 32px 28px;
     text-align: center;
-    border-radius: 24px;
-    background: rgba(6,12,23,.70);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,.12);
-    box-shadow:
-        0 18px 35px rgba(0,0,0,.20),
-        inset 0 1px 0 rgba(255,255,255,.08);
+    border-radius: var(--radius-card);
+    background: rgba(7, 17, 31, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.important::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    background: var(--brand-gradient);
 }
 
 .important h2 {
-    margin-bottom: 9px;
-    font-size: 22px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
 .important p {
-    opacity: .78;
-    line-height: 1.5;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto;
 }
 
+/* ==========================================================================
+   FOOTER & BACK TO TOP
+   ========================================================================== */
 footer {
+    position: relative;
     text-align: center;
-    padding: 28px 15px;
-    background: rgba(1,18,55,.82);
-    border-top: 1px solid rgba(255,255,255,.10);
-    font-size: 14px;
-    color: rgba(255,255,255,.82);
+    padding: 32px 18px;
+    background: rgba(3, 7, 18, 0.7);
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .top-btn {
     position: fixed;
-    right: 22px;
-    bottom: 22px;
-    width: 48px;
-    height: 48px;
-    border: 1px solid rgba(255,255,255,.25);
+    right: 24px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: rgba(255,255,255,.92);
-    color: #075bd8;
-    font-size: 20px;
-    font-weight: bold;
+    background: rgba(7, 17, 31, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 1500;
-    transition: .2s ease;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-smooth);
+    backdrop-filter: blur(10px);
 }
 
 .top-btn:hover {
-    transform: translateY(-3px) scale(1.04);
+    background: var(--brand-gradient);
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
 }
 
-/* =====================================================
-   MODERN THEMED TELEGRAM & LOGIN OVERLAYS
-===================================================== */
+/* ==========================================================================
+   MODALS / OVERLAYS
+   ========================================================================== */
 .login-overlay, .site-overlay, .overlay {
     position: fixed;
     inset: 0;
@@ -617,31 +785,28 @@ footer {
     display: none;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    background: rgba(2, 6, 16, 0.82);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    padding: 16px;
+    background: rgba(2, 6, 18, 0.84);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
-/* Modern Dark-Themed Telegram Popup Card */
 .instagram-popup {
     position: relative;
     width: min(390px, 100%);
     padding: 34px 26px 26px;
     text-align: center;
     border-radius: 26px;
-    background: linear-gradient(165deg, rgba(14, 26, 48, 0.95) 0%, rgba(6, 12, 24, 0.98) 100%);
+    background: linear-gradient(165deg, rgba(7, 17, 31, 0.96) 0%, rgba(4, 9, 18, 0.98) 100%);
     border: 1px solid rgba(56, 189, 248, 0.28);
-    box-shadow: 
-        0 26px 70px -10px rgba(0, 0, 0, 0.85),
-        0 0 40px -10px rgba(56, 189, 248, 0.22);
-    animation: popupFadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 26px 70px -10px rgba(0, 0, 0, 0.85), 0 0 35px -10px rgba(37, 99, 235, 0.25);
+    animation: popupIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes popupFadeIn {
+@keyframes popupIn {
     from {
         opacity: 0;
-        transform: scale(0.88) translateY(18px);
+        transform: scale(0.92) translateY(12px);
     }
     to {
         opacity: 1;
@@ -653,30 +818,29 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 66px;
-    height: 66px;
+    width: 64px;
+    height: 64px;
     border-radius: 20px;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.28));
     border: 1px solid rgba(56, 189, 248, 0.38);
-    font-size: 34px;
+    font-size: 32px;
     margin: 0 auto 16px;
-    box-shadow: 0 8px 24px -4px rgba(56, 189, 248, 0.28);
+    box-shadow: 0 8px 24px -4px rgba(56, 189, 248, 0.25);
 }
 
 .instagram-popup h2 {
-    font-size: 1.55rem;
-    font-weight: 850;
+    font-size: 1.45rem;
+    font-weight: 800;
     color: #ffffff;
-    letter-spacing: -0.3px;
     margin-bottom: 4px;
+    letter-spacing: -0.3px;
 }
 
 .instagram-popup p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: #38bdf8;
-    font-weight: 750;
+    font-weight: 700;
     margin-bottom: 22px;
-    letter-spacing: 0.3px;
 }
 
 .insta-follow {
@@ -686,14 +850,14 @@ footer {
     gap: 8px;
     width: 100%;
     padding: 13px 18px;
-    border-radius: 14px;
+    border-radius: var(--radius-btn);
     background: linear-gradient(135deg, #0284c7, #2563eb);
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.96rem;
+    font-size: 0.92rem;
     font-weight: 800;
     box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.5);
-    transition: all 0.22s ease;
+    transition: all var(--transition-smooth);
     margin-bottom: 12px;
 }
 
@@ -708,588 +872,530 @@ footer {
     padding: 11px 16px;
     border-radius: 12px;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    color: #64748b;
-    font-size: 0.85rem;
-    font-weight: 650;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    font-family: inherit;
+    transition: all var(--transition-smooth);
 }
 
 .skip:hover {
     background: rgba(255, 255, 255, 0.05);
     color: #cbd5e1;
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.16);
 }
-
-/* LOGIN POPUP */
-.login-popup {
-    width: min(430px, 100%);
-    padding: 28px 24px;
-    border-radius: 25px;
-    background: linear-gradient(145deg, #092b61, #04152f);
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 30px 90px rgba(0,0,0,.55);
-    animation: popupFadeIn .3s ease;
-}
-
-.login-popup h2 { text-align: center; margin-bottom: 7px; }
-.login-popup-subtitle { text-align: center; opacity: .72; font-size: 14px; margin-bottom: 22px; }
-.login-close { float: right; width: 36px; height: 36px; border: none; border-radius: 50%; background: rgba(255,255,255,.10); color: white; cursor: pointer; font-size: 18px; }
-.login-close:hover { background: rgba(255,60,60,.25); }
-
-.login-input {
-    width: 100%;
-    padding: 13px 15px;
-    margin-bottom: 12px;
-    border-radius: 13px;
-    border: 1px solid rgba(255,255,255,.17);
-    outline: none;
-    background: rgba(255,255,255,.09);
-    color: white;
-    font-size: 15px;
-}
-.login-input::placeholder { color: rgba(255,255,255,.55); }
-.login-input:focus { border-color: rgba(90,180,255,.7); }
-
-.otp-btn {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 13px;
-    background: white;
-    color: #075bd8;
-    font-weight: 900;
-    cursor: pointer;
-    margin-top: 4px;
-    transition: .2s ease;
-}
-.otp-btn:hover { transform: translateY(-2px); }
-.otp-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
-.otp-section { display: none; margin-top: 15px; }
-.login-message { min-height: 20px; margin-top: 12px; text-align: center; font-size: 13px; color: rgba(255,255,255,.78); }
-.recaptcha-box { display: flex; justify-content: center; margin: 12px 0; }
 
 .site-popup {
     position: relative;
     width: min(1200px, 96vw);
-    height: min(800px, 90vh);
-    background: white;
-    border-radius: 24px;
+    height: min(820px, 90vh);
+    background: #07111F;
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 30px 90px rgba(0,0,0,.6);
-    animation: sitePopup .3s ease;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+    animation: popupIn 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
-@keyframes sitePopup {
-    from { opacity: 0; transform: scale(.92) translateY(15px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
+
 .site-close {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 14px;
+    right: 14px;
     z-index: 10;
-    width: 44px;
-    height: 44px;
-    border: none;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 50%;
-    background: rgba(0,0,0,.78);
+    background: rgba(7, 17, 31, 0.85);
     color: white;
-    font-size: 23px;
-    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    box-shadow: 0 5px 18px rgba(0,0,0,.35);
-    transition: .2s ease;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-smooth);
 }
-.site-close:hover { background: #e00000; transform: rotate(4deg) scale(1.05); }
-.site-frame { width: 100%; height: 100%; border: none; }
+
+.site-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: rotate(90deg);
+}
+
 .site-refresh {
     position: absolute;
     top: 14px;
-    right: 65px;
+    right: 60px;
     z-index: 10;
-    height: 40px;
-    padding: 0 12px;
-    border: none;
+    height: 38px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
-    background: rgba(0,0,0,.72);
+    background: rgba(7, 17, 31, 0.85);
     color: white;
-    font-size: 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-smooth);
 }
 
-.entertainment-choice {
-    display: block;
+.site-refresh:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.site-frame {
     width: 100%;
-    padding: 20px;
-    margin: 14px 0;
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 16px;
-    background: rgba(255,255,255,.10);
-    color: white;
-    font-size: 19px;
-    font-weight: 750;
-    text-align: left;
-    cursor: pointer;
-    transition: .2s ease;
-}
-.entertainment-choice:hover {
-    background: rgba(255,255,255,.19);
-    transform: translateY(-2px);
+    height: 100%;
+    border: none;
+    background: #fff;
 }
 
-/* RESPONSIVE */
-@media (max-width: 850px) {
-    .resource-grid { grid-template-columns: repeat(2, 1fr); }
-    .nav-links { gap: 15px; }
+/* ==========================================================================
+   HIDDEN AUTH PRESERVATION
+   ========================================================================== */
+.auth-hidden-container {
+    display: none !important;
 }
 
-@media (max-width: 600px) {
-    .navbar {
-        width: calc(100% - 22px);
-        margin-top: 10px;
-        top: 8px;
-        border-radius: 18px;
-        padding: 8px 9px;
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 992px) {
+    .resource-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
     }
-    .nav-links { display: none; }
-    .logo { padding: 8px 11px; border-radius: 12px; font-size: 17px; }
-    .login-btn, .profile-btn { padding: 9px 11px; font-size: 12px; }
-    .hero { min-height: auto; padding: 32px 18px 10px; }
-    .welcome { font-size: 42px; }
-    .hero p { margin-top: 6px; font-size: 14px; }
-    .search-area { margin-bottom: 16px; }
-    .search-box { padding: 14px 18px; border-radius: 15px; }
-    .filters { gap: 6px; margin-bottom: 24px; }
-    .filter { padding: 8px 13px; font-size: 12px; }
-    .resource-grid { grid-template-columns: 1fr; gap: 18px; }
-    .card { min-height: auto; padding: 18px; border-radius: 23px; }
-    .card-image, .card-img { height: 160px; border-radius: 17px; }
-    .important { width: 92%; padding: 23px 18px; border-radius: 21px; }
-    .top-btn { right: 17px; bottom: 18px; width: 45px; height: 45px; }
-    .site-overlay { padding: 7px; }
-    .site-popup { width: 100%; height: 94vh; border-radius: 17px; }
-    .site-close { width: 40px; height: 40px; font-size: 21px; }
-    .site-refresh { top: 5px; right: 55px; height: 40px; }
-    .profile-menu { right: -5px; }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero {
+        padding: 44px 16px 18px;
+    }
+
+    .search-area {
+        margin: 20px auto 22px;
+    }
+
+    .filters-container {
+        padding: 0 8px;
+        margin-bottom: 24px;
+    }
+
+    .filters {
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .filter {
+        padding: 8px 14px;
+        font-size: 0.78rem;
+    }
+
+    .resource-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .card {
+        padding: 18px 14px;
+    }
+
+    .card-image-box {
+        height: 130px;
+    }
+}
+
+@media (max-width: 540px) {
+    .navbar {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        padding: 8px 14px;
+    }
+
+    .logo-name {
+        font-size: 0.95rem;
+    }
+
+    .nav-cta {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+    }
+
+    .welcome {
+        font-size: 2.1rem;
+    }
+
+    .search-box {
+        padding: 14px 16px 14px 46px;
+        font-size: 0.9rem;
+    }
+
+    .search-icon-btn {
+        left: 16px;
+        font-size: 1rem;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .important {
+        margin: 10px 12px 40px;
+        padding: 24px 18px;
+    }
+
+    .site-popup {
+        width: 100vw;
+        height: 94vh;
+        border-radius: 16px;
+    }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
+<!-- ==========================================================================
      NAVBAR
-========================= -->
-<nav class="navbar">
+     ========================================================================== -->
+<nav class="navbar" id="mainNav">
     <div class="nav-content">
-        <div class="logo">📚 Study Hub</div>
+        <a href="#home" class="logo">
+            <span class="logo-badge">📚</span>
+            <span class="logo-name gradient-text">Study Hub</span>
+        </a>
+
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#resources">Resources</a>
             <a href="#important">Important</a>
         </div>
 
-        <!-- LOGIN -->
-        <button class="login-btn" id="loginBtn" onclick="openLoginPopup()">
-            Login / Sign Up
-        </button>
-
-        <!-- PROFILE -->
-        <div class="profile-area" id="profileArea" style="display:none;">
-            <button class="profile-btn" onclick="toggleProfileMenu()">
-                <span class="profile-icon">👤</span>
-                <span id="profileName">User</span>
-            </button>
-
-            <div class="profile-menu" id="profileMenu">
-                <div class="profile-name" id="profileMenuName">User</div>
-                <button class="logout-btn" onclick="logoutUser()">Logout</button>
-            </div>
-        </div>
+        <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer" class="nav-cta">
+            <span>✈</span>
+            <span>Join Community</span>
+        </a>
     </div>
 </nav>
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ==========================================================================
+     HERO SECTION
+     ========================================================================== -->
 <section class="hero" id="home">
-    <div class="welcome">WELCOME ❤️</div>
-    <p>Your Personal Study Hub</p>
+    <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Curated Educational Hub</span>
+    </div>
+    <h1 class="welcome">
+        <span class="gradient-text">Study Smarter,</span><br>
+        Achieve Beyond
+    </h1>
+    <p>Your premier portal for verified batches, curated academic notes, books, and interactive resources.</p>
 </section>
 
-<!-- =========================
-     SEARCH
-========================= -->
+<!-- ==========================================================================
+     SEARCH BAR
+     ========================================================================== -->
 <div class="search-area">
-    <input
-        type="text"
-        id="search"
-        class="search-box"
-        placeholder="🔎 Search your resources..."
-    >
+    <div class="search-wrapper">
+        <span class="search-icon-btn">🔍</span>
+        <input
+            type="text"
+            id="search"
+            class="search-box"
+            placeholder="Search batches, subjects, notes, creators..."
+            autocomplete="off"
+            aria-label="Search resources"
+        >
+    </div>
 </div>
 
-<!-- =========================
-     FILTERS
-========================= -->
-<div class="filters">
-    <button class="filter active" onclick="filterCards('all', this)">
-        All
-    </button>
-    <button class="filter" onclick="filterCards('next', this)">
-        Next Toppers
-    </button>
-    <button class="filter" onclick="filterCards('mission', this)">
-        Mission Jeet
-    </button>
-    <button class="filter" onclick="filterCards('pw', this)">
-        PW
-    </button>
-    <button class="filter" onclick="filterCards('sciencefun', this)">
-        Science and Fun
-    </button>
-    <button class="filter" onclick="filterCards('vibrant', this)">
-        Vibrant Academy
-    </button>
-    <button class="filter" onclick="filterCards('unacademy', this)">
-        Unacademy
-    </button>
-    <button class="filter" onclick="filterCards('rwa', this)">
-        Rojgar with Ankit
-    </button>
+<!-- ==========================================================================
+     CATEGORY / FILTER BUTTONS
+     ========================================================================== -->
+<div class="filters-container">
+    <div class="filters" role="tablist">
+        <button class="filter active" onclick="filterCards('all', this)">All Platforms</button>
+        <button class="filter" onclick="filterCards('next', this)">Next Toppers</button>
+        <button class="filter" onclick="filterCards('mission', this)">Mission Jeet</button>
+        <button class="filter" onclick="filterCards('pw', this)">PW</button>
+        <button class="filter" onclick="filterCards('sciencefun', this)">Science and Fun</button>
+        <button class="filter" onclick="filterCards('vibrant', this)">Vibrant Academy</button>
+        <button class="filter" onclick="filterCards('unacademy', this)">Unacademy</button>
+        <button class="filter" onclick="filterCards('rwa', this)">Rojgar with Ankit</button>
+    </div>
 </div>
 
-<!-- =========================
-     RESOURCES
-========================= -->
+<!-- ==========================================================================
+     RESOURCES (RESPONSIVE MULTI-ROW GRID)
+     ========================================================================== -->
 <section class="container" id="resources">
+    <div class="section-header">
+        <h2 class="section-title gradient-text">Featured Learning Portals</h2>
+        <p class="section-subtitle">Verified portals and high-yield academic hubs ready for instant access</p>
+    </div>
+
     <div class="resource-grid" id="resourceGrid">
 
         <!-- BOOKS CARD -->
         <div class="card books" data-category="books">
-            <div class="card-image" style="display:flex; align-items:center; justify-content:center; font-size:60px; background:rgba(255,255,255,.07);">
-                📚
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <span class="card-emoji-box">📚</span>
+                </div>
+                <h2>Study Books</h2>
+                <p>Class 10th & 11th reference books, question banks & notes.</p>
             </div>
-            <h2>Study Books</h2>
-            <p>Class 10th & 11th reference books, question banks & notes.</p>
-            <a href="books/" class="launch" style="text-align:center;">LAUNCH →</a>
-        </div>
-
-        <!-- MOVIES + LATENT COMBINED CARD -->
-        <div class="card latent" data-category="movies latent">
-            <div class="card-image" style="display:flex; align-items:center; justify-content:center; font-size:64px;">🎬</div>
-            <h2>Movies, Latent 🎬</h2>
-            <p>Movies and Latent episodes in one place.</p>
-            <button type="button" class="launch" onclick="openEntertainmentPopup()" style="cursor:pointer;">OPEN →</button>
+            <a href="books/" class="launch">LAUNCH PORTAL →</a>
         </div>
 
         <!-- NEXT TOPPERS 1 -->
         <div class="card next" data-category="next">
-            <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
-            <h2>Next Toppers 1</h2>
-            <p>Access your Next Toppers study resources.</p>
-            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/nexttoppers')" class="launch">LAUNCH →</a>
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
+                </div>
+                <h2>Next Toppers 1</h2>
+                <p>Access your Next Toppers study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/nexttoppers')" class="launch">LAUNCH BATCH →</a>
         </div>
 
-        <!-- NEXT TOPPERS 2 -->
+        <!-- NEXT TOPPERS 2 (DESTINATION LINK REMOVED — READY FOR YOUR URL) -->
         <div class="card next" data-category="next">
-            <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
-            <h2>Next Toppers 2</h2>
-            <p>Explore another Next Toppers resource.</p>
-            <a href="javascript:void(0)" onclick="openSitePopup('https://nt.nexthope.site/')" class="launch">LAUNCH →</a>
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
+                </div>
+                <h2>Next Toppers 2</h2>
+                <p>Explore another Next Toppers resource.</p>
+            </div>
+            <!-- INSERT YOUR URL BELOW: e.g. openSitePopup('YOUR_URL_HERE') OR href="YOUR_URL_HERE" -->
+            <a href="javascript:void(0)" onclick="/* Add your destination URL here */" class="launch pending-link">LAUNCH BATCH →</a>
+        </div>
+
+        <!-- PW 1 (MOVED DIRECTLY AFTER NEXT TOPPERS 2) -->
+        <div class="card pw" data-category="pw">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="pw.png" class="card-image" loading="lazy" decoding="async" alt="PW">
+                </div>
+                <h2>PW 1</h2>
+                <p>Physics Wallah study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live')" class="launch">LAUNCH BATCH →</a>
         </div>
 
         <!-- SCIENCE AND FUN -->
         <div class="card science-fun" data-category="sciencefun">
-            <div class="card-image" style="display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                <img src="scienceandfun.png" alt="Science and Fun Logo" style="width:82%; max-width:180px; height:82%; object-fit:contain;">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="scienceandfun.png" alt="Science and Fun Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Science and Fun</h2>
+                <p>Science and Fun study resources.</p>
             </div>
-            <h2>Science and Fun</h2>
-            <p>Science and Fun study resources.</p>
-            <a href="javascript:void(0)" onclick="window.open('https://scienceandfun.nexthope.site/','_blank')" class="launch">LAUNCH →</a>
+            <a href="javascript:void(0)" onclick="window.open('https://scienceandfun.nexthope.site/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
         </div>
 
         <!-- SCIENCE AND FUN 2 -->
         <div class="card science-fun" data-category="sciencefun">
-            <div class="card-image" style="display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                <img src="scienceandfun.png" alt="Science and Fun 2 Logo" style="width:82%; max-width:180px; height:82%; object-fit:contain;">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="scienceandfun.png" alt="Science and Fun 2 Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Science and Fun 2</h2>
+                <p>Science and Fun study resources.</p>
             </div>
-            <h2>Science and Fun 2</h2>
-            <p>Science and Fun study resources.</p>
-            <a href="javascript:void(0)" onclick="window.open('https://pwspidey.live/study/scienceandfun/','_blank')" class="launch">LAUNCH →</a>
+            <a href="javascript:void(0)" onclick="window.open('https://pwspidey.live/study/scienceandfun/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
         </div>
 
         <!-- MISSION JEET -->
         <div class="card mission" data-category="mission">
-            <img src="mission jeet.png" class="card-image" loading="lazy" decoding="async" alt="Mission Jeet">
-            <h2>Mission Jeet</h2>
-            <p>Continue your Mission Jeet preparation.</p>
-            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/missionjeet')" class="launch">LAUNCH →</a>
-        </div>
-
-        <!-- PW 1 -->
-        <div class="card pw" data-category="pw">
-            <img src="pw.png" class="card-image" loading="lazy" decoding="async" alt="PW">
-            <h2>PW 1</h2>
-            <p>Physics Wallah study resources.</p>
-            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live')" class="launch">LAUNCH →</a>
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="mission jeet.png" class="card-image" loading="lazy" decoding="async" alt="Mission Jeet">
+                </div>
+                <h2>Mission Jeet</h2>
+                <p>Continue your Mission Jeet preparation.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/missionjeet')" class="launch">LAUNCH BATCH →</a>
         </div>
 
         <!-- VIBRANT ACADEMY -->
         <div class="card vibrant" data-category="vibrant">
-            <img src="vibrant.png" alt="Vibrant Academy" class="card-image">
-            <div class="card-content">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="vibrant.png" alt="Vibrant Academy" class="card-image" loading="lazy" decoding="async">
+                </div>
                 <h2>Vibrant Academy</h2>
-                <p>Explore Vibrant Academy Resources</p>
-                <button class="launch" onclick="openSitePopup('https://pwspidey.live/study/vibrant')">
-                    LAUNCH →
-                </button>
+                <p>Explore Vibrant Academy Resources.</p>
             </div>
+            <button type="button" class="launch" onclick="openSitePopup('https://pwspidey.live/study/vibrant')">LAUNCH BATCH →</button>
         </div>
 
         <!-- UNACADEMY CARD -->
         <div class="card unacademy" data-category="unacademy">
-            <img src="unacademy.png" alt="Unacademy Logo" class="card-image" loading="lazy" decoding="async">
-            <div class="card-content">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="unacademy.png" alt="Unacademy Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
                 <h2>Unacademy</h2>
-                <p>Explore Unacademy Resources</p>
-                <button class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">
-                    LAUNCH →
-                </button>
+                <p>Explore Unacademy Resources.</p>
             </div>
+            <button type="button" class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">LAUNCH BATCH →</button>
         </div>
 
         <!-- ROJGAR WITH ANKIT (RWA) CARD -->
         <div class="card rwa" data-category="rwa">
-            <img src="rwa.png" alt="Rojgar with Ankit Logo" class="card-image" loading="lazy" decoding="async">
-            <div class="card-content">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="rwa.png" alt="Rojgar with Ankit Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
                 <h2>Rojgar with Ankit</h2>
-                <p>Explore Rojgar with Ankit Resources</p>
-                <button class="launch" onclick="openSitePopup('https://nexthope.pages.dev/rwa/')">
-                    LAUNCH →
-                </button>
+                <p>Explore Rojgar with Ankit Resources.</p>
             </div>
+            <button type="button" class="launch" onclick="openSitePopup('https://nexthope.pages.dev/rwa/')">LAUNCH BATCH →</button>
         </div>
 
     </div>
 </section>
 
-<!-- =========================
-     IMPORTANT
-========================= -->
+<!-- ==========================================================================
+     IMPORTANT NOTICE SECTION
+     ========================================================================== -->
 <section class="important" id="important">
-    <h2>⭐ Important Resources</h2>
-    <p>Keep your most useful study resources close and start learning faster.</p>
+    <h2 class="gradient-text">⭐ Important Resources & Guidelines</h2>
+    <p>Bookmark your primary learning tracks, access verified notes directly, and accelerate your preparation journey with zero distraction.</p>
 </section>
 
-<!-- =========================
+<!-- ==========================================================================
      FOOTER
-========================= -->
+     ========================================================================== -->
 <footer>
-    Made by Adavya with ♥
+    <div style="margin-bottom: 8px;">
+        Designed & Curated with pride by <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer">Adavya</a>
+    </div>
+    <div style="font-size: 0.76rem; opacity: 0.65;">
+        © 2026 Adavya29 Study Hub. All educational links belong to their respective creators.
+    </div>
 </footer>
 
-<!-- =========================
-     BACK TO TOP
-========================= -->
-<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+<!-- ==========================================================================
+     BACK TO TOP BUTTON
+     ========================================================================== -->
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">
     ↑
 </button>
 
-<!-- =========================
-     LOGIN POPUP
-========================= -->
-<div class="login-overlay" id="loginOverlay">
-    <div class="login-popup">
-        <button class="login-close" onclick="closeLoginPopup()">✕</button>
-        <h2>📱 Login / Sign Up</h2>
-        <p class="login-popup-subtitle">Login with your phone number</p>
-
-        <input type="text" id="nameInput" class="login-input" placeholder="Your name (optional)" maxlength="40">
-        <input type="tel" id="phoneInput" class="login-input" placeholder="+91XXXXXXXXXX" autocomplete="tel">
-        <div class="recaptcha-box" id="recaptcha-container"></div>
-        <button class="otp-btn" id="sendOtpBtn" onclick="sendOTP()">Send OTP</button>
-
-        <div class="otp-section" id="otpSection">
-            <input type="text" id="otpInput" class="login-input" placeholder="Enter 6-digit OTP" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
-            <button class="otp-btn" id="verifyOtpBtn" onclick="verifyOTP()">Verify OTP</button>
-        </div>
-
-        <div class="login-message" id="loginMessage"></div>
-    </div>
-</div>
-
-<!-- =========================
-     MODERN THEMED TELEGRAM POPUP
-========================= -->
+<!-- ==========================================================================
+     TELEGRAM OVERLAY POPUP
+     ========================================================================== -->
 <div class="overlay" id="instaPopup">
     <div class="instagram-popup">
         <div class="insta-icon">✈</div>
-        <h2>Join on Telegram</h2>
-        <p>@adavvya</p>
+        <h2>Join Our Community</h2>
+        <p>@adavvya on Telegram</p>
         <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer" class="insta-follow">
-            Join on Telegram ↗
+            Join Telegram Channel ↗
         </a>
         <button class="skip" onclick="closePopup()">
-            Skip & Continue →
+            Skip & Continue to Platform →
         </button>
     </div>
 </div>
 
-<!-- COMBINED MOVIES + LATENT MENU -->
-<div class="site-overlay" id="entertainmentOverlay" style="display:none;">
-  <div class="site-popup" style="background:#071426; color:white;">
-    <button class="site-close" onclick="closeEntertainmentPopup()" aria-label="Close">✕</button>
-    <div style="padding:28px 22px;">
-      <h2 style="margin-bottom:25px;">🎬 Movies, Latent</h2>
-      <button class="entertainment-choice" onclick="showEntertainmentSection('movies')">🎥 Movies →</button>
-      <button class="entertainment-choice" onclick="showEntertainmentSection('latent')">📁 Latent Exclusive →</button>
-    </div>
-  </div>
-</div>
-
-<!-- =========================
-     LATENT EXCLUSIVE
-========================= -->
-<div class="site-overlay" id="latentOverlay">
-    <div class="site-popup">
-        <button class="site-close" onclick="closeLatentPopup()" aria-label="Close">✕</button>
-        <div id="latentFolderView" style="height:100%; display:flex; flex-direction:column; background:#fff; color:#111;">
-            <div style="padding:18px 60px 18px 20px; font-size:20px; font-weight:850; border-bottom:1px solid #ddd;">
-                📁 Latent Exclusive
-            </div>
-            <div style="padding:22px; overflow:auto;">
-                <button type="button" onclick="openLatentVideo('🎬 Latent Netflix Episode 6', 'https://drive.google.com/file/d/1CdytmExiBoAECGlrkii40nAiSqHUpAj_/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; border:1px solid #ddd; border-radius:14px; background:#f7f7f7; color:#111; text-align:left; cursor:pointer; font:inherit;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Latent Netflix Episode 6</strong>
-                        <small style="opacity:.65;">Video</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openLatentVideo('🎬 Bonus Episode 3 of youtube.1080p', 'https://drive.google.com/file/d/15n329sSzOd7m4coYZUW35TiqxbhY9cuz/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; border:1px solid #ddd; border-radius:14px; background:#f7f7f7; color:#111; text-align:left; cursor:pointer; font:inherit;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Bonus Episode 3 of youtube.1080p</strong>
-                        <small style="opacity:.65;">Video</small>
-                    </span>
-                </button>
-
-                <a href="https://vplink.in/rpnBUq" target="_blank" rel="noopener noreferrer" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; border:1px solid #ddd; border-radius:14px; background:#f7f7f7; color:#111; text-align:left; text-decoration:none; font:inherit;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>India's Got Latent S02 – Bonus Ep. 04</strong>
-                        <small style="opacity:.65;">1080p • Watch Episode ↗</small>
-                    </span>
-                </a>
-            </div>
-        </div>
-
-        <div id="latentVideoView" style="height:100%; display:none; flex-direction:column; background:#fff;">
-            <div style="display:flex; align-items:center; gap:12px; padding:18px 60px 18px 20px; color:#111; font-size:20px; font-weight:850; border-bottom:1px solid #ddd;">
-                <button type="button" onclick="backToLatentFolder()" style="border:1px solid #ccc; border-radius:10px; background:#f5f5f5; color:#111; padding:8px 12px; cursor:pointer; font-weight:700;">
-                    ← Back
-                </button>
-                <span id="latentVideoTitle">🎬 Upcoming</span>
-            </div>
-            <iframe id="latentVideoFrame" class="site-frame" src="" allow="autoplay" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-
-<!-- =========================
-     MOVIES
-========================= -->
-<div class="site-overlay" id="moviesOverlay" style="display:none;">
-    <div class="site-popup">
-        <button class="site-close" onclick="closeMoviesPopup()" aria-label="Close">✕</button>
-        <div id="moviesFolderView" style="height:100%; display:flex; flex-direction:column; background:#fff; color:#111;">
-            <div style="padding:18px 60px 18px 20px; font-size:20px; font-weight:850; border-bottom:1px solid #ddd;">
-                🎬 Movies
-            </div>
-            <div style="padding:22px; overflow:auto;">
-                <button type="button" onclick="openMovieVideo('🎬 Mirzapur The Movie(2026)', 'https://drive.google.com/file/d/15cS2mNaTob409Z6WXx2xa4UyBkmPccDy/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; border:1px solid #ddd; border-radius:14px; background:#f7f7f7; color:#111; text-align:left; cursor:pointer; font:inherit;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Mirzapur The Movie(2026)</strong>
-                        <small style="opacity:.65;">Movie</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openMovieVideo('🎬 TOXiC (2026)', 'https://drive.google.com/file/d/1W1-ivjBOSOzf3skgGk3c36Waiw4cfmQE/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; background:#fff; border:1px solid #ddd; border-radius:14px;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>TOXiC (2026)</strong>
-                        <small style="opacity:.65;">Movie</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openMovieVideo('🎬 Brand New Day Spiderman (2026)', 'https://drive.google.com/file/d/1xc9RW-w5JxXohb0GkSCtKhmEEJUrHt8W/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; background:#fff; border:1px solid #ddd; border-radius:14px;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Brand New Day Spiderman (2026)</strong>
-                        <small style="opacity:.65;">Movie</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openMovieVideo('🎬 Moana(2026)', 'https://drive.google.com/file/d/15xNgq2nJmFfLafhZva399x6GhdtSghIf/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; background:#fff; border:1px solid #ddd; border-radius:14px;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Moana(2026)</strong>
-                        <small style="opacity:.65;">Movie</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openMovieVideo('🎬 Hanuman Ansh (2026) Hindi HDTC ', 'https://drive.google.com/file/d/1nPXWmGvEli-Gn4__S7Myq-hQTH0SGXv7/preview')" style="width:100%; display:flex; align-items:center; gap:16px; padding:16px; margin-bottom:12px; background:#fff; border:1px solid #ddd; border-radius:14px;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span style="display:flex; flex-direction:column; gap:4px;">
-                        <strong>Hanuman Ansh (2026) Hindi HDTC</strong>
-                        <small style="opacity:.65;">Movie</small>
-                    </span>
-                </button>
-
-                <button type="button" onclick="openMovieVideo('🎬 Vvaan (2026)', 'https://drive.google.com/file/d/1gRWWuNL5IReX2bX5WN57AMWQLQNO_TTd/preview')" style="width:100%;display:flex;align-items:center;gap:16px;padding:16px;margin-bottom:12px;border:1px solid #ddd;border-radius:14px;background:#f7f7f7;color:#111;text-align:left;cursor:pointer;font:inherit;">
-                    <span style="font-size:34px;">🎬</span>
-                    <span><strong>Vvaan (2026)</strong><br><small style="opacity:.65;">Movie</small></span>
-                </button>
-            </div>
-        </div>
-
-        <div id="movieVideoView" style="height:100%; display:none; flex-direction:column; background:#fff;">
-            <div style="display:flex; align-items:center; gap:12px; padding:18px 60px 18px 20px; color:#111; font-size:20px; font-weight:850; border-bottom:1px solid #ddd;">
-                <button type="button" onclick="backToMoviesFolder()" style="border:1px solid #ccc; border-radius:10px; background:#f5f5f5; color:#111; padding:8px 12px; cursor:pointer; font-weight:700;">
-                    ← Back
-                </button>
-                <span id="movieVideoTitle">🎬 Mirzapur The Movie(2026)</span>
-            </div>
-            <iframe id="movieVideoFrame" class="site-frame" src="" allow="autoplay" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
-
-<!-- =========================
+<!-- ==========================================================================
      WEBSITE LAUNCH POPUP
-========================= -->
+     ========================================================================== -->
 <div class="site-overlay" id="siteOverlay">
     <div class="site-popup">
-        <button class="site-refresh" onclick="refreshSiteFrame()">↻ Refresh Frame</button>
+        <button class="site-refresh" onclick="refreshSiteFrame()">↻ Refresh</button>
         <button class="site-close" onclick="closeSitePopup()" aria-label="Close">✕</button>
         <iframe id="siteFrame" class="site-frame" src="about:blank" allowfullscreen></iframe>
     </div>
 </div>
 
+<!-- ==========================================================================
+     PRESERVED AUTH INFRASTRUCTURE (INTENTIONALLY HIDDEN PER SPEC)
+     ========================================================================== -->
+<div class="auth-hidden-container" aria-hidden="true">
+    <button class="login-btn" id="loginBtn" onclick="openLoginPopup()"></button>
+    <div class="profile-area" id="profileArea">
+        <button class="profile-btn" onclick="toggleProfileMenu()">
+            <span id="profileName">User</span>
+        </button>
+        <div class="profile-menu" id="profileMenu">
+            <div class="profile-name" id="profileMenuName">User</div>
+            <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+    </div>
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-popup">
+            <button class="login-close" onclick="closeLoginPopup()">✕</button>
+            <input type="text" id="nameInput">
+            <input type="tel" id="phoneInput">
+            <div id="recaptcha-container"></div>
+            <button class="otp-btn" id="sendOtpBtn" onclick="sendOTP()"></button>
+            <div id="otpSection">
+                <input type="text" id="otpInput">
+                <button class="otp-btn" id="verifyOtpBtn" onclick="verifyOTP()"></button>
+            </div>
+            <div id="loginMessage"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     JAVASCRIPT CORE
+     ========================================================================== -->
 <script>
-/* =====================================================
-   AUTO OPEN TELEGRAM POPUP ON LOAD
-===================================================== */
+/* Navbar compact state */
+const navbar = document.getElementById("mainNav");
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", function () {
+    const scrollPos = window.scrollY;
+    if (scrollPos > 30) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+
+    if (topBtn) {
+        topBtn.style.display = scrollPos > 400 ? "flex" : "none";
+    }
+}, { passive: true });
+
+/* Auto open telegram popup on initial load */
 window.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         const popup = document.getElementById("instaPopup");
         if (popup) {
             popup.style.display = "flex";
         }
-    }, 800);
+    }, 900);
 });
 
 function closePopup() {
@@ -1299,196 +1405,7 @@ function closePopup() {
     }
 }
 
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
-const firebaseConfig = {
-    apiKey: "AIzaSyAlQy1g9Y_Mm9QY-q6MF1oK53rKEn1tKKU",
-    authDomain: "adavya-study-hub.firebaseapp.com",
-    projectId: "adavya-study-hub",
-    storageBucket: "adavya-study-hub.firebasestorage.app",
-    messagingSenderId: "1087086249986",
-    appId: "1:1087086249986:web:41ec61723171aa165abf1b"
-};
-
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-let confirmationResult = null;
-let recaptchaVerifier = null;
-
-/* LOGIN POPUP */
-function openLoginPopup() {
-    document.getElementById("loginOverlay").style.display = "flex";
-    document.getElementById("loginMessage").textContent = "";
-    setTimeout(setupRecaptcha, 100);
-}
-
-function closeLoginPopup() {
-    document.getElementById("loginOverlay").style.display = "none";
-    document.getElementById("loginMessage").textContent = "";
-}
-
-function setupRecaptcha() {
-    if (recaptchaVerifier) return;
-    recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        "recaptcha-container",
-        {
-            size: "normal",
-            callback: function () {
-                document.getElementById("loginMessage").textContent = "✓ Verification complete.";
-            },
-            "expired-callback": function () {
-                document.getElementById("loginMessage").textContent = "reCAPTCHA expired. Please verify again.";
-            }
-        }
-    );
-    recaptchaVerifier.render().catch(function (error) {
-        console.error("reCAPTCHA error:", error);
-        document.getElementById("loginMessage").textContent = "Could not load security verification.";
-    });
-}
-
-function sendOTP() {
-    const name = document.getElementById("nameInput").value.trim();
-    const phone = document.getElementById("phoneInput").value.trim();
-    const message = document.getElementById("loginMessage");
-    const button = document.getElementById("sendOtpBtn");
-
-    if (!phone) {
-        message.textContent = "Please enter your phone number.";
-        return;
-    }
-    if (!phone.startsWith("+")) {
-        message.textContent = "Please enter number with country code, e.g. +91XXXXXXXXXX";
-        return;
-    }
-    if (!recaptchaVerifier) {
-        setupRecaptcha();
-        message.textContent = "Please complete the verification first.";
-        return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Sending OTP...";
-
-    auth.signInWithPhoneNumber(phone, recaptchaVerifier)
-    .then(function (result) {
-        confirmationResult = result;
-        document.getElementById("otpSection").style.display = "block";
-        message.textContent = "OTP sent successfully. Check your phone.";
-        button.style.display = "none";
-    })
-    .catch(function (error) {
-        console.error(error);
-        button.disabled = false;
-        button.textContent = "Send OTP";
-        message.textContent = getFirebaseErrorMessage(error);
-        if (recaptchaVerifier) {
-            recaptchaVerifier.clear();
-            recaptchaVerifier = null;
-            document.getElementById("recaptcha-container").innerHTML = "";
-            setupRecaptcha();
-        }
-    });
-}
-
-function verifyOTP() {
-    const otp = document.getElementById("otpInput").value.trim();
-    const name = document.getElementById("nameInput").value.trim();
-    const message = document.getElementById("loginMessage");
-    const button = document.getElementById("verifyOtpBtn");
-
-    if (!confirmationResult) {
-        message.textContent = "Please request an OTP first.";
-        return;
-    }
-    if (!otp || otp.length !== 6) {
-        message.textContent = "Please enter the 6-digit OTP.";
-        return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Verifying...";
-
-    confirmationResult.confirm(otp)
-    .then(function (result) {
-        const user = result.user;
-        if (name) {
-            return user.updateProfile({ displayName: name }).then(function () {
-                updateProfileUI(user);
-                closeLoginPopup();
-            });
-        }
-        updateProfileUI(user);
-        closeLoginPopup();
-    })
-    .catch(function (error) {
-        console.error(error);
-        button.disabled = false;
-        button.textContent = "Verify OTP";
-        message.textContent = getFirebaseErrorMessage(error);
-    });
-}
-
-function getFirebaseErrorMessage(error) {
-    if (!error) return "Something went wrong.";
-    switch (error.code) {
-        case "auth/invalid-phone-number": return "Invalid phone number.";
-        case "auth/too-many-requests": return "Too many attempts. Please try again later.";
-        case "auth/invalid-verification-code": return "Incorrect OTP.";
-        case "auth/code-expired": return "OTP expired. Please request a new one.";
-        case "auth/quota-exceeded": return "SMS limit reached. Please try again later.";
-        case "auth/operation-not-allowed": return "Phone authentication is not enabled in Firebase.";
-        case "auth/captcha-check-failed": return "Security verification failed. Please try again.";
-        default: return error.message || "Login failed. Please try again.";
-    }
-}
-
-function updateProfileUI(user) {
-    if (!user) return;
-    const name = user.displayName && user.displayName.trim() ? user.displayName.trim() : "User";
-    document.getElementById("loginBtn").style.display = "none";
-    document.getElementById("profileArea").style.display = "block";
-    document.getElementById("profileName").textContent = name;
-    document.getElementById("profileMenuName").textContent = name;
-}
-
-function logoutUser() {
-    auth.signOut().then(function () {
-        document.getElementById("profileArea").style.display = "none";
-        document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("profileMenu").classList.remove("show");
-        document.getElementById("profileName").textContent = "User";
-        document.getElementById("profileMenuName").textContent = "User";
-    }).catch(function (error) {
-        console.error("Logout error:", error);
-    });
-}
-
-function toggleProfileMenu() {
-    document.getElementById("profileMenu").classList.toggle("show");
-}
-
-document.addEventListener("click", function (event) {
-    const profileArea = document.getElementById("profileArea");
-    const profileMenu = document.getElementById("profileMenu");
-    if (profileArea.style.display !== "none" && !profileArea.contains(event.target)) {
-        profileMenu.classList.remove("show");
-    }
-});
-
-auth.onAuthStateChanged(function (user) {
-    if (user) {
-        updateProfileUI(user);
-    } else {
-        document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("profileArea").style.display = "none";
-    }
-});
-
-/* =====================================================
-   SEARCH & FILTERS
-===================================================== */
+/* Fast Search Filtering */
 const searchBox = document.getElementById("search");
 const cards = document.querySelectorAll(".card");
 
@@ -1500,6 +1417,7 @@ searchBox.addEventListener("input", function () {
     });
 });
 
+/* Category Button Filtering */
 function filterCards(category, button) {
     document.querySelectorAll(".filter").forEach(function (btn) {
         btn.classList.remove("active");
@@ -1517,108 +1435,7 @@ function filterCards(category, button) {
     });
 }
 
-/* =====================================================
-   BACK TO TOP
-===================================================== */
-const topBtn = document.getElementById("topBtn");
-let scrollTicking = false;
-
-window.addEventListener("scroll", function () {
-    if (!scrollTicking) {
-        requestAnimationFrame(function () {
-            topBtn.style.display = window.scrollY > 400 ? "block" : "none";
-            scrollTicking = false;
-        });
-        scrollTicking = true;
-    }
-}, { passive: true });
-
-/* =====================================================
-   ENTERTAINMENT / LATENT / MOVIES
-===================================================== */
-const latentOverlay = document.getElementById("latentOverlay");
-const latentFolderView = document.getElementById("latentFolderView");
-const latentVideoView = document.getElementById("latentVideoView");
-const latentVideoFrame = document.getElementById("latentVideoFrame");
-const latentVideoTitle = document.getElementById("latentVideoTitle");
-
-function openLatentPopup() {
-    latentOverlay.style.display = "flex";
-    latentFolderView.style.display = "flex";
-    latentVideoView.style.display = "none";
-    latentVideoFrame.src = "";
-    document.body.style.overflow = "hidden";
-}
-
-function openLatentVideo(title, url) {
-    latentVideoTitle.textContent = title;
-    latentVideoFrame.src = url;
-    latentFolderView.style.display = "none";
-    latentVideoView.style.display = "flex";
-}
-
-function backToLatentFolder() {
-    latentVideoFrame.src = "";
-    latentVideoView.style.display = "none";
-    latentFolderView.style.display = "flex";
-}
-
-function closeLatentPopup() {
-    latentVideoFrame.src = "";
-    latentOverlay.style.display = "none";
-    openEntertainmentPopup();
-}
-
-function openEntertainmentPopup() {
-    document.getElementById('entertainmentOverlay').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-function closeEntertainmentPopup() {
-    document.getElementById('entertainmentOverlay').style.display = 'none';
-    document.body.style.overflow = '';
-}
-function showEntertainmentSection(section) {
-    document.getElementById('entertainmentOverlay').style.display = 'none';
-    if (section === 'movies') openMoviesPopup();
-    else openLatentPopup();
-}
-
-const moviesOverlay = document.getElementById("moviesOverlay");
-const moviesFolderView = document.getElementById("moviesFolderView");
-const movieVideoView = document.getElementById("movieVideoView");
-const movieVideoFrame = document.getElementById("movieVideoFrame");
-const movieVideoTitle = document.getElementById("movieVideoTitle");
-
-function openMoviesPopup() {
-    moviesOverlay.style.display = "flex";
-    moviesFolderView.style.display = "flex";
-    movieVideoView.style.display = "none";
-    movieVideoFrame.src = "";
-    document.body.style.overflow = "hidden";
-}
-
-function openMovieVideo(title, url) {
-    movieVideoTitle.textContent = title;
-    movieVideoFrame.src = url;
-    moviesFolderView.style.display = "none";
-    movieVideoView.style.display = "flex";
-}
-
-function backToMoviesFolder() {
-    movieVideoFrame.src = "";
-    movieVideoView.style.display = "none";
-    moviesFolderView.style.display = "flex";
-}
-
-function closeMoviesPopup() {
-    movieVideoFrame.src = "";
-    moviesOverlay.style.display = "none";
-    openEntertainmentPopup();
-}
-
-/* =====================================================
-   WEBSITE LAUNCH POPUP
-===================================================== */
+/* Site Frame Popup */
 const siteOverlay = document.getElementById("siteOverlay");
 const siteFrame = document.getElementById("siteFrame");
 
@@ -1649,6 +1466,41 @@ function refreshSiteFrame() {
         }
     }
 }
+
+/* Preserved Firebase Stubs */
+const firebaseConfig = {
+    apiKey: "AIzaSyAlQy1g9Y_Mm9QY-q6MF1oK53rKEn1tKKU",
+    authDomain: "adavya-study-hub.firebaseapp.com",
+    projectId: "adavya-study-hub",
+    storageBucket: "adavya-study-hub.firebasestorage.app",
+    messagingSenderId: "1087086249986",
+    appId: "1:1087086249986:web:41ec61723171aa165abf1b"
+};
+
+try {
+    firebase.initializeApp(firebaseConfig);
+} catch (e) {}
+
+const auth = typeof firebase !== 'undefined' ? firebase.auth() : null;
+let confirmationResult = null;
+let recaptchaVerifier = null;
+
+function openLoginPopup() {
+    const overlay = document.getElementById("loginOverlay");
+    if (overlay) overlay.style.display = "flex";
+}
+
+function closeLoginPopup() {
+    const overlay = document.getElementById("loginOverlay");
+    if (overlay) overlay.style.display = "none";
+}
+
+function sendOTP() {}
+function verifyOTP() {}
+function logoutUser() {
+    if (auth) auth.signOut();
+}
+function toggleProfileMenu() {}
 </script>
 
 </body>
