@@ -98,8 +98,8 @@ body::before {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.08), transparent 32%),
-        radial-gradient(circle at 82% 24%, rgba(124, 58, 237, 0.08), transparent 36%),
+        radial-gradient(circle at 18% 14%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 82% 20%, rgba(124, 58, 237, 0.08), transparent 36%),
         radial-gradient(circle at 50% 80%, rgba(37, 99, 235, 0.06), transparent 42%),
         linear-gradient(180deg, #02050b 0%, #030816 50%, #02050e 100%);
     z-index: -2;
@@ -117,8 +117,8 @@ body::after {
     background-size: 56px 56px;
     z-index: -1;
     pointer-events: none;
-    mask-image: radial-gradient(circle at 50% 40%, black 40%, transparent 85%);
-    -webkit-mask-image: radial-gradient(circle at 50% 40%, black 40%, transparent 85%);
+    mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
 }
 
 .gradient-text {
@@ -134,24 +134,24 @@ body::after {
    ========================================================================== */
 .navbar {
     position: sticky;
-    top: 14px;
+    top: 12px;
     z-index: 1000;
     width: min(1180px, calc(100% - 32px));
-    margin: 14px auto 0;
-    padding: 10px 18px;
+    margin: 12px auto 0;
+    padding: 9px 18px;
     border-radius: var(--radius-pill);
     background: rgba(7, 17, 31, 0.75);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transition: all var(--transition-smooth);
 }
 
 .navbar.scrolled {
-    background: rgba(6, 11, 23, 0.9);
+    background: rgba(6, 11, 23, 0.92);
     border-color: rgba(56, 189, 248, 0.22);
-    box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.6), 0 0 20px -8px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.6), 0 0 18px -8px rgba(37, 99, 235, 0.25);
 }
 
 .nav-content {
@@ -164,7 +164,7 @@ body::after {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 800;
     letter-spacing: -0.2px;
     text-decoration: none;
@@ -175,17 +175,17 @@ body::after {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 10px;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(124, 58, 237, 0.22));
     border: 1px solid rgba(255, 255, 255, 0.12);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
 .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 26px;
     align-items: center;
 }
 
@@ -193,7 +193,7 @@ body::after {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     transition: color var(--transition-smooth), transform var(--transition-smooth);
 }
 
@@ -206,13 +206,13 @@ body::after {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 8px 16px;
+    padding: 7px 15px;
     border-radius: var(--radius-pill);
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(124, 58, 237, 0.18));
     border: 1px solid rgba(56, 189, 248, 0.28);
     color: #e2e8f0;
     text-decoration: none;
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     font-weight: 700;
     transition: all var(--transition-smooth);
 }
@@ -226,7 +226,7 @@ body::after {
 }
 
 /* ==========================================================================
-   HERO SECTION
+   ELEVATED COMPACT HERO SECTION
    ========================================================================== */
 .hero {
     text-align: center;
@@ -234,7 +234,7 @@ body::after {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 68px 20px 20px;
+    padding: 36px 20px 6px;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -242,50 +242,50 @@ body::after {
 .hero-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
+    gap: 7px;
+    padding: 5px 12px;
     border-radius: var(--radius-pill);
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid rgba(255, 255, 255, 0.09);
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
     color: #cbd5e1;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .hero-pill .dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 10px #10b981;
+    box-shadow: 0 0 8px #10b981;
 }
 
 .welcome {
-    font-size: clamp(2.4rem, 5.8vw, 4.4rem);
+    font-size: clamp(2.3rem, 5.2vw, 4rem);
     font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 12px;
+    line-height: 1.12;
+    margin-bottom: 10px;
 }
 
 .hero p {
     color: var(--text-secondary);
-    font-size: clamp(0.98rem, 2vw, 1.15rem);
-    max-width: 580px;
+    font-size: clamp(0.92rem, 1.8vw, 1.08rem);
+    max-width: 560px;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* ==========================================================================
    SEARCH BAR
    ========================================================================== */
 .search-area {
-    max-width: 720px;
+    max-width: 700px;
     width: calc(100% - 32px);
-    margin: 28px auto 26px;
+    margin: 16px auto 12px;
     position: relative;
 }
 
@@ -295,24 +295,24 @@ body::after {
     align-items: center;
     background: rgba(7, 17, 31, 0.65);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: 18px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     transition: all var(--transition-smooth);
 }
 
 .search-wrapper:focus-within {
     border-color: rgba(56, 189, 248, 0.45);
     background: rgba(7, 17, 31, 0.9);
-    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.6), 0 0 22px -5px rgba(37, 99, 235, 0.25);
 }
 
 .search-icon-btn {
     position: absolute;
-    left: 20px;
+    left: 18px;
     color: var(--text-muted);
-    font-size: 1.15rem;
+    font-size: 1.08rem;
     pointer-events: none;
     transition: color var(--transition-smooth);
 }
@@ -323,12 +323,12 @@ body::after {
 
 .search-box {
     width: 100%;
-    padding: 17px 20px 17px 54px;
+    padding: 15px 18px 15px 50px;
     background: transparent;
     border: none;
     outline: none;
     color: var(--text-primary);
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     font-family: inherit;
     font-weight: 500;
 }
@@ -338,57 +338,164 @@ body::after {
 }
 
 /* ==========================================================================
-   CATEGORY / FILTER BUTTONS
+   COMPACT FILTERS CONTROL & DROPDOWN/POPOVER PANEL
    ========================================================================== */
-.filters-container {
-    max-width: 1200px;
-    margin: 0 auto 36px;
-    padding: 0 16px;
-}
-
-.filters {
+.filter-control-area {
+    position: relative;
+    max-width: 700px;
+    width: calc(100% - 32px);
+    margin: 0 auto 24px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 9px;
-    padding: 4px 6px;
 }
 
-.filter {
+.filter-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(7, 17, 31, 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.4);
+    transition: all var(--transition-smooth);
+}
+
+.filter-toggle-btn:hover {
+    color: #fff;
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(14, 27, 49, 0.85);
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.25);
+}
+
+.filter-toggle-btn.active {
+    color: #fff;
+    border-color: rgba(56, 189, 248, 0.55);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(124, 58, 237, 0.25));
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.filter-toggle-icon {
+    font-size: 0.92rem;
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.filter-toggle-btn.active .filter-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.filter-active-pill {
+    display: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--brand-gradient);
+    color: #fff;
+    margin-left: 2px;
+}
+
+.filter-active-pill.visible {
+    display: inline-block;
+}
+
+/* POPOVER / DROPDOWN PANEL (HIDDEN BY DEFAULT) */
+.filter-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    z-index: 100;
+    width: min(560px, 96vw);
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(7, 17, 31, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 25px -8px rgba(37, 99, 235, 0.3);
+    display: none;
+    animation: popoverFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-panel.show {
+    display: block;
+}
+
+@keyframes popoverFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.filter-panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.filter-grid-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.filter-chip {
     white-space: nowrap;
     border: 1px solid var(--glass-border);
-    background: rgba(7, 17, 31, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(14, 27, 49, 0.55);
     color: var(--text-secondary);
-    padding: 9px 18px;
-    border-radius: var(--radius-pill);
+    padding: 9px 12px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.83rem;
+    font-size: 0.8rem;
     font-family: inherit;
-    letter-spacing: -0.1px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
     transition: all var(--transition-smooth);
     user-select: none;
 }
 
-.filter:hover {
+.filter-chip:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(56, 189, 248, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.35);
     transform: translateY(-1.5px);
 }
 
-.filter.active {
+.filter-chip.active {
     color: #ffffff;
     background: var(--brand-gradient);
     border-color: transparent;
-    box-shadow: 0 10px 25px -6px rgba(37, 99, 235, 0.45);
+    box-shadow: 0 8px 20px -5px rgba(37, 99, 235, 0.5);
 }
 
 /* ==========================================================================
-   STATIC RESPONSIVE GRID LAYOUT
+   STATIC RESPONSIVE GRID LAYOUT (NATURAL ROWS)
+   Row 1: Card | Card | Card
+   Row 2: Card | Card | Card
+   Row 3: Card | Card | Card
    ========================================================================== */
 .container {
     width: min(1280px, calc(100% - 32px));
@@ -397,41 +504,52 @@ body::after {
 }
 
 .section-header {
-    margin-bottom: 26px;
+    margin-bottom: 20px;
     padding: 0 4px;
 }
 
+.section-title-wrap {
+    display: inline-block;
+}
+
 .section-title {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
 
-.section-subtitle {
-    font-size: 0.86rem;
-    color: var(--text-secondary);
-    margin-top: 4px;
+.section-glow-line {
+    width: 48px;
+    height: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--brand-gradient);
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
-/* Multi-column grid: cards naturally flow into rows */
+.section-subtitle {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* Multi-column Grid: auto-adapting rows */
 .resource-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 26px;
-    padding: 10px 4px 45px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 4px 4px 40px;
     width: 100%;
     overflow: visible;
 }
 
 /* ==========================================================================
    SOPHISTICATED LUXURIOUS CARD & HOVER GLOW
-   Normal: Mostly dark navy glass
-   Hover: translateY(-8px) scale(1.02), soft diffused blue-violet ambient glow
    ========================================================================== */
 .card {
     position: relative;
     border-radius: var(--radius-card);
-    padding: 24px 20px;
+    padding: 22px 18px;
     background: var(--bg-card);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(14px);
@@ -478,7 +596,6 @@ body::after {
     z-index: 1;
 }
 
-/* HOVER BEHAVIOR: Perfectly isolated, zero movement of surrounding cards */
 @media (hover: hover) {
     .card:hover {
         transform: translateY(-8px) scale(1.02);
@@ -506,7 +623,6 @@ body::after {
     }
 }
 
-/* Touch active state */
 .card:active {
     transform: translateY(-3px) scale(1.01);
     border-color: rgba(56, 189, 248, 0.35);
@@ -528,9 +644,9 @@ body::after {
 
 .card-image-box {
     width: 100%;
-    height: 145px;
+    height: 140px;
     border-radius: 16px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
@@ -550,34 +666,34 @@ body::after {
 }
 
 .card-emoji-box {
-    font-size: 54px;
+    font-size: 52px;
     transition: transform var(--transition-smooth), filter var(--transition-smooth);
     user-select: none;
 }
 
 .card h2, .card h3 {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     font-weight: 800;
     letter-spacing: -0.015em;
     color: #f1f5f9;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     text-align: center;
     transition: color var(--transition-smooth);
 }
 
 .card p {
-    font-size: 0.84rem;
+    font-size: 0.83rem;
     color: var(--text-secondary);
     line-height: 1.45;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* Subdued platform hues aligned with blue-violet aesthetic */
+/* Platform Subdued Accents */
 .card.next {
     background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 70%), var(--bg-card);
 }
@@ -611,14 +727,14 @@ body::after {
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 12px 18px;
+    padding: 11px 16px;
     border-radius: var(--radius-btn);
     background: rgba(14, 27, 49, 0.65);
     border: 1px solid rgba(56, 189, 248, 0.22);
     color: #f1f5f9;
     text-decoration: none;
     font-weight: 750;
-    font-size: 0.82rem;
+    font-size: 0.81rem;
     letter-spacing: 0.8px;
     cursor: pointer;
     font-family: inherit;
@@ -631,7 +747,6 @@ body::after {
     overflow: hidden;
 }
 
-/* Subtle Shimmer Sweep on Launch Button */
 .launch::before {
     content: "";
     position: absolute;
@@ -670,7 +785,6 @@ body::after {
     transform: scale(0.98);
 }
 
-/* Launch Button Inactive State (for Next Toppers 2 pending URL) */
 .launch.pending-link {
     cursor: default;
     opacity: 0.85;
@@ -688,8 +802,8 @@ body::after {
    ========================================================================== */
 .important {
     max-width: 860px;
-    margin: 20px auto 55px;
-    padding: 32px 28px;
+    margin: 10px auto 45px;
+    padding: 28px 24px;
     text-align: center;
     border-radius: var(--radius-card);
     background: rgba(7, 17, 31, 0.65);
@@ -712,15 +826,15 @@ body::after {
 }
 
 .important h2 {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .important p {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.55;
     max-width: 540px;
     margin: 0 auto;
 }
@@ -731,10 +845,10 @@ body::after {
 footer {
     position: relative;
     text-align: center;
-    padding: 32px 18px;
+    padding: 28px 18px;
     background: rgba(3, 7, 18, 0.7);
     border-top: 1px solid var(--glass-border);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -748,15 +862,15 @@ footer a {
 
 .top-btn {
     position: fixed;
-    right: 24px;
-    bottom: 24px;
-    width: 44px;
-    height: 44px;
+    right: 22px;
+    bottom: 22px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: rgba(7, 17, 31, 0.85);
     border: 1px solid rgba(56, 189, 248, 0.2);
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
@@ -818,18 +932,18 @@ footer a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 64px;
-    height: 64px;
-    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.28));
     border: 1px solid rgba(56, 189, 248, 0.38);
-    font-size: 32px;
-    margin: 0 auto 16px;
+    font-size: 30px;
+    margin: 0 auto 15px;
     box-shadow: 0 8px 24px -4px rgba(56, 189, 248, 0.25);
 }
 
 .instagram-popup h2 {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: #ffffff;
     margin-bottom: 4px;
@@ -837,10 +951,10 @@ footer a {
 }
 
 .instagram-popup p {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     color: #38bdf8;
     font-weight: 700;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .insta-follow {
@@ -849,12 +963,12 @@ footer a {
     justify-content: center;
     gap: 8px;
     width: 100%;
-    padding: 13px 18px;
+    padding: 12px 18px;
     border-radius: var(--radius-btn);
     background: linear-gradient(135deg, #0284c7, #2563eb);
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 800;
     box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.5);
     transition: all var(--transition-smooth);
@@ -869,12 +983,12 @@ footer a {
 
 .skip {
     width: 100%;
-    padding: 11px 16px;
+    padding: 10px 16px;
     border-radius: 12px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-muted);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
     font-weight: 600;
     cursor: pointer;
     font-family: inherit;
@@ -906,13 +1020,13 @@ footer a {
     top: 14px;
     right: 14px;
     z-index: 10;
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 50%;
     background: rgba(7, 17, 31, 0.85);
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -930,15 +1044,15 @@ footer a {
 .site-refresh {
     position: absolute;
     top: 14px;
-    right: 60px;
+    right: 58px;
     z-index: 10;
-    height: 38px;
-    padding: 0 14px;
+    height: 36px;
+    padding: 0 13px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
     background: rgba(7, 17, 31, 0.85);
     color: white;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     backdrop-filter: blur(10px);
@@ -964,41 +1078,35 @@ footer a {
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN BREAKPOINTS
+   RESPONSIVE DESIGN BREAKPOINTS & OPTIMIZED MOBILE LAYOUT
    ========================================================================== */
-@media (max-width: 992px) {
+@media (max-width: 1080px) {
     .resource-grid {
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 }
 
+/* Tablet Optimizations */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
     }
-    
+
     .hero {
-        padding: 44px 16px 18px;
+        padding: 30px 16px 8px;
+    }
+
+    .welcome {
+        font-size: clamp(2rem, 5.2vw, 2.8rem);
     }
 
     .search-area {
-        margin: 20px auto 22px;
+        margin: 16px auto 14px;
     }
 
-    .filters-container {
-        padding: 0 8px;
-        margin-bottom: 24px;
-    }
-
-    .filters {
-        justify-content: center;
-        gap: 6px;
-    }
-
-    .filter {
-        padding: 8px 14px;
-        font-size: 0.78rem;
+    .filter-control-area {
+        margin-bottom: 20px;
     }
 
     .resource-grid {
@@ -1015,50 +1123,210 @@ footer a {
     }
 }
 
-@media (max-width: 540px) {
+/* Mobile-First Compact & Elevated Layout */
+@media (max-width: 640px) {
     .navbar {
-        width: calc(100% - 20px);
+        width: calc(100% - 24px);
         margin-top: 10px;
-        padding: 8px 14px;
+        padding: 7px 12px;
     }
 
-    .logo-name {
-        font-size: 0.95rem;
+    .logo {
+        gap: 8px;
     }
 
-    .nav-cta {
-        padding: 6px 12px;
-        font-size: 0.78rem;
-    }
-
-    .welcome {
-        font-size: 2.1rem;
-    }
-
-    .search-box {
-        padding: 14px 16px 14px 46px;
+    .logo-badge {
+        width: 28px;
+        height: 28px;
         font-size: 0.9rem;
     }
 
-    .search-icon-btn {
-        left: 16px;
-        font-size: 1rem;
+    .logo-name {
+        font-size: 0.9rem;
     }
 
+    .nav-cta {
+        padding: 5px 11px;
+        font-size: 0.74rem;
+    }
+
+    /* 1. HERO SECTION: Elevated, tight, immediate */
+    .hero {
+        padding: 18px 12px 6px;
+    }
+
+    .hero-pill {
+        margin-bottom: 8px;
+        padding: 4px 9px;
+        font-size: 0.68rem;
+    }
+
+    .welcome {
+        font-size: 1.8rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+        line-height: 1.15;
+    }
+
+    .hero p {
+        font-size: 0.84rem;
+        line-height: 1.4;
+        max-width: 320px;
+    }
+
+    /* 2. SEARCH BAR: Streamlined & ergonomic */
+    .search-area {
+        width: calc(100% - 20px);
+        margin: 12px auto 10px;
+    }
+
+    .search-box {
+        padding: 12px 14px 12px 42px;
+        font-size: 0.88rem;
+    }
+
+    .search-icon-btn {
+        left: 14px;
+        font-size: 0.95rem;
+    }
+
+    .search-wrapper {
+        border-radius: 15px;
+    }
+
+    /* 3. COMPACT FILTERS BUTTON & POPOVER (MOBILE) */
+    .filter-control-area {
+        width: calc(100% - 20px);
+        margin-bottom: 16px;
+    }
+
+    .filter-toggle-btn {
+        padding: 7px 15px;
+        font-size: 0.78rem;
+    }
+
+    .filter-panel {
+        width: calc(100vw - 32px);
+        padding: 14px;
+    }
+
+    .filter-grid-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .filter-chip {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+        border-radius: 10px;
+    }
+
+    /* 4. SECTION HEADING: Fast transition to resources */
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .section-header {
+        margin-bottom: 14px;
+        padding: 0 2px;
+    }
+
+    .section-title {
+        font-size: 1.22rem;
+    }
+
+    .section-glow-line {
+        width: 38px;
+        height: 2.5px;
+        margin-top: 4px;
+    }
+
+    .section-subtitle {
+        font-size: 0.78rem;
+        margin-top: 4px;
+        line-height: 1.35;
+    }
+
+    /* 5. RESOURCE CARDS: Clean 1-column responsive stack */
     .resource-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
+        padding: 0 0 28px;
     }
 
+    .card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .card-image-box {
+        height: 120px;
+        margin-bottom: 12px;
+        border-radius: 14px;
+    }
+
+    .card h2, .card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+    }
+
+    .card p {
+        font-size: 0.8rem;
+        margin-bottom: 14px;
+        line-height: 1.4;
+    }
+
+    .launch {
+        padding: 10px 14px;
+        font-size: 0.78rem;
+        border-radius: 11px;
+    }
+
+    /* Notice & Modal mobile tuning */
     .important {
-        margin: 10px 12px 40px;
-        padding: 24px 18px;
+        margin: 8px auto 28px;
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
+
+    .important h2 {
+        font-size: 1.12rem;
+        margin-bottom: 5px;
+    }
+
+    .important p {
+        font-size: 0.79rem;
+        line-height: 1.4;
+    }
+
+    footer {
+        padding: 22px 14px;
+        font-size: 0.76rem;
     }
 
     .site-popup {
         width: 100vw;
         height: 94vh;
         border-radius: 16px;
+    }
+
+    .top-btn {
+        right: 14px;
+        bottom: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Narrow Phone Adjustment */
+@media (max-width: 360px) {
+    .filter-grid-options {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome {
+        font-size: 1.6rem;
     }
 }
 
@@ -1100,7 +1368,7 @@ footer a {
 </nav>
 
 <!-- ==========================================================================
-     HERO SECTION
+     ELEVATED HERO SECTION
      ========================================================================== -->
 <section class="hero" id="home">
     <div class="hero-pill">
@@ -1132,18 +1400,31 @@ footer a {
 </div>
 
 <!-- ==========================================================================
-     CATEGORY / FILTER BUTTONS
+     COMPACT FILTERS CONTROL (HIDDEN UNTIL CLICKED)
      ========================================================================== -->
-<div class="filters-container">
-    <div class="filters" role="tablist">
-        <button class="filter active" onclick="filterCards('all', this)">All Platforms</button>
-        <button class="filter" onclick="filterCards('next', this)">Next Toppers</button>
-        <button class="filter" onclick="filterCards('mission', this)">Mission Jeet</button>
-        <button class="filter" onclick="filterCards('pw', this)">PW</button>
-        <button class="filter" onclick="filterCards('sciencefun', this)">Science and Fun</button>
-        <button class="filter" onclick="filterCards('vibrant', this)">Vibrant Academy</button>
-        <button class="filter" onclick="filterCards('unacademy', this)">Unacademy</button>
-        <button class="filter" onclick="filterCards('rwa', this)">Rojgar with Ankit</button>
+<div class="filter-control-area">
+    <button class="filter-toggle-btn" id="filterToggleBtn" onclick="toggleFilterPanel(event)" aria-expanded="false" aria-controls="filterPanel">
+        <span class="filter-toggle-icon">⚙</span>
+        <span>Filters</span>
+        <span class="filter-active-pill" id="filterActiveBadge">All</span>
+    </button>
+
+    <!-- Compact Glass Popover Panel -->
+    <div class="filter-panel" id="filterPanel" role="region" aria-label="Platform filters">
+        <div class="filter-panel-title">
+            <span>Filter By Platform</span>
+            <span id="activeFilterName" style="color: #38bdf8;">All Platforms</span>
+        </div>
+        <div class="filter-grid-options" role="tablist">
+            <button class="filter-chip active" onclick="filterCards('all', this, 'All Platforms')">All</button>
+            <button class="filter-chip" onclick="filterCards('next', this, 'Next Toppers')">Next Toppers</button>
+            <button class="filter-chip" onclick="filterCards('mission', this, 'Mission Jeet')">Mission Jeet</button>
+            <button class="filter-chip" onclick="filterCards('pw', this, 'PW')">PW</button>
+            <button class="filter-chip" onclick="filterCards('sciencefun', this, 'Science & Fun')">Science and Fun</button>
+            <button class="filter-chip" onclick="filterCards('vibrant', this, 'Vibrant')">Vibrant Academy</button>
+            <button class="filter-chip" onclick="filterCards('unacademy', this, 'Unacademy')">Unacademy</button>
+            <button class="filter-chip" onclick="filterCards('rwa', this, 'Rojgar w/ Ankit')">Rojgar with Ankit</button>
+        </div>
     </div>
 </div>
 
@@ -1152,13 +1433,16 @@ footer a {
      ========================================================================== -->
 <section class="container" id="resources">
     <div class="section-header">
-        <h2 class="section-title gradient-text">Featured Learning Portals</h2>
+        <div class="section-title-wrap">
+            <h2 class="section-title gradient-text">Featured Learning Portals</h2>
+            <div class="section-glow-line"></div>
+        </div>
         <p class="section-subtitle">Verified portals and high-yield academic hubs ready for instant access</p>
     </div>
 
     <div class="resource-grid" id="resourceGrid">
 
-        <!-- BOOKS CARD -->
+        <!-- 1. BOOKS CARD -->
         <div class="card books" data-category="books">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1170,7 +1454,7 @@ footer a {
             <a href="books/" class="launch">LAUNCH PORTAL →</a>
         </div>
 
-        <!-- NEXT TOPPERS 1 -->
+        <!-- 2. NEXT TOPPERS 1 -->
         <div class="card next" data-category="next">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1182,7 +1466,7 @@ footer a {
             <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/nexttoppers')" class="launch">LAUNCH BATCH →</a>
         </div>
 
-        <!-- NEXT TOPPERS 2 (DESTINATION LINK REMOVED — READY FOR YOUR URL) -->
+        <!-- 3. NEXT TOPPERS 2 (DESTINATION LINK REMOVED — READY FOR YOUR URL) -->
         <div class="card next" data-category="next">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1195,7 +1479,7 @@ footer a {
             <a href="javascript:void(0)" onclick="/* Add your destination URL here */" class="launch pending-link">LAUNCH BATCH →</a>
         </div>
 
-        <!-- PW 1 (MOVED DIRECTLY AFTER NEXT TOPPERS 2) -->
+        <!-- 4. PW 1 (MOVED DIRECTLY AFTER NEXT TOPPERS 2) -->
         <div class="card pw" data-category="pw">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1207,7 +1491,7 @@ footer a {
             <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live')" class="launch">LAUNCH BATCH →</a>
         </div>
 
-        <!-- SCIENCE AND FUN -->
+        <!-- 5. SCIENCE AND FUN -->
         <div class="card science-fun" data-category="sciencefun">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1219,7 +1503,7 @@ footer a {
             <a href="javascript:void(0)" onclick="window.open('https://scienceandfun.nexthope.site/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
         </div>
 
-        <!-- SCIENCE AND FUN 2 -->
+        <!-- 6. SCIENCE AND FUN 2 -->
         <div class="card science-fun" data-category="sciencefun">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1231,7 +1515,7 @@ footer a {
             <a href="javascript:void(0)" onclick="window.open('https://pwspidey.live/study/scienceandfun/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
         </div>
 
-        <!-- MISSION JEET -->
+        <!-- 7. MISSION JEET -->
         <div class="card mission" data-category="mission">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1243,7 +1527,7 @@ footer a {
             <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/missionjeet')" class="launch">LAUNCH BATCH →</a>
         </div>
 
-        <!-- VIBRANT ACADEMY -->
+        <!-- 8. VIBRANT ACADEMY -->
         <div class="card vibrant" data-category="vibrant">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1255,7 +1539,7 @@ footer a {
             <button type="button" class="launch" onclick="openSitePopup('https://pwspidey.live/study/vibrant')">LAUNCH BATCH →</button>
         </div>
 
-        <!-- UNACADEMY CARD -->
+        <!-- 9. UNACADEMY CARD -->
         <div class="card unacademy" data-category="unacademy">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1267,7 +1551,7 @@ footer a {
             <button type="button" class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">LAUNCH BATCH →</button>
         </div>
 
-        <!-- ROJGAR WITH ANKIT (RWA) CARD -->
+        <!-- 10. ROJGAR WITH ANKIT (RWA) CARD -->
         <div class="card rwa" data-category="rwa">
             <div class="card-header-area">
                 <div class="card-image-box">
@@ -1417,12 +1701,52 @@ searchBox.addEventListener("input", function () {
     });
 });
 
+/* Toggle Filters Popover Panel */
+const filterPanel = document.getElementById("filterPanel");
+const filterToggleBtn = document.getElementById("filterToggleBtn");
+
+function toggleFilterPanel(event) {
+    if (event) event.stopPropagation();
+    const isOpen = filterPanel.classList.contains("show");
+    if (isOpen) {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    } else {
+        filterPanel.classList.add("show");
+        filterToggleBtn.classList.add("active");
+        filterToggleBtn.setAttribute("aria-expanded", "true");
+    }
+}
+
+/* Close Popover on Outside Click */
+document.addEventListener("click", function (event) {
+    if (!filterPanel.contains(event.target) && !filterToggleBtn.contains(event.target)) {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    }
+});
+
 /* Category Button Filtering */
-function filterCards(category, button) {
-    document.querySelectorAll(".filter").forEach(function (btn) {
+function filterCards(category, button, label) {
+    document.querySelectorAll(".filter-chip").forEach(function (btn) {
         btn.classList.remove("active");
     });
     button.classList.add("active");
+
+    const badge = document.getElementById("filterActiveBadge");
+    const labelHeader = document.getElementById("activeFilterName");
+
+    if (category === "all") {
+        badge.classList.remove("visible");
+        badge.textContent = "All";
+        labelHeader.textContent = "All Platforms";
+    } else {
+        badge.classList.add("visible");
+        badge.textContent = label || category;
+        labelHeader.textContent = label || category;
+    }
 
     cards.forEach(function (card) {
         if (category === "all") {
@@ -1433,6 +1757,13 @@ function filterCards(category, button) {
             card.style.display = "none";
         }
     });
+
+    /* Automatically collapse panel after selection */
+    setTimeout(() => {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    }, 180);
 }
 
 /* Site Frame Popup */
