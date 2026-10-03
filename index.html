@@ -449,6 +449,19 @@ body {
     box-shadow: 0 25px 55px rgba(0,0,0,.45), 0 0 28px rgba(8, 189, 128, 0.2);
 }
 
+/* ROJGAR WITH ANKIT (RWA) CARD THEME */
+.rwa {
+    background: 
+        radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.22), transparent 35%),
+        linear-gradient(145deg, #241400 0%, #452600 50%, #d97706 100%);
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+.rwa:hover {
+    border-color: rgba(245, 158, 11, 0.65);
+    box-shadow: 0 25px 55px rgba(0,0,0,.45), 0 0 28px rgba(245, 158, 11, 0.25);
+}
+
 .science-fun {
     background:
         radial-gradient(circle at 80% 18%, rgba(255,245,170,.20), transparent 28%),
@@ -942,6 +955,9 @@ footer {
     <button class="filter" onclick="filterCards('unacademy', this)">
         Unacademy
     </button>
+    <button class="filter" onclick="filterCards('rwa', this)">
+        Rojgar with Ankit
+    </button>
 </div>
 
 <!-- =========================
@@ -1039,6 +1055,18 @@ footer {
                 <h2>Unacademy</h2>
                 <p>Explore Unacademy Resources</p>
                 <button class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">
+                    LAUNCH →
+                </button>
+            </div>
+        </div>
+
+        <!-- ROJGAR WITH ANKIT (RWA) CARD -->
+        <div class="card rwa" data-category="rwa">
+            <img src="rwa.png" alt="Rojgar with Ankit Logo" class="card-image" loading="lazy" decoding="async">
+            <div class="card-content">
+                <h2>Rojgar with Ankit</h2>
+                <p>Explore Rojgar with Ankit Resources</p>
+                <button class="launch" onclick="openSitePopup('https://nexthope.pages.dev/rwa/')">
                     LAUNCH →
                 </button>
             </div>
