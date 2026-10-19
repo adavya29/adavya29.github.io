@@ -1848,7 +1848,7 @@ function toggleProfileMenu() {}
    IMPORTANT: replace the placeholder below with your VP Link short URL.
    The short link's destination must be this site's /unlock.html page.
    ===================================================================== */
-const VP_GATE_URL = "PASTE_YOUR_VP_SHORT_LINK_HERE";
+const VP_GATE_URL = "https://vplink.in/CLL8";
 const VP_ACCESS_STORAGE_KEY = "adavya_vp_batch_access_until_v1";
 const VP_ACCESS_DURATION_MS = 72 * 60 * 60 * 1000;
 
@@ -1870,7 +1870,7 @@ function vpRefreshBatchButtons() {
 }
 
 function vpStartGate() {
-    if (!VP_GATE_URL || VP_GATE_URL === 'PASTE_YOUR_VP_SHORT_LINK_HERE') {
+    if (!VP_GATE_URL || VP_GATE_URL === 'https://vplink.in/CLL8') {
         alert('VP Link abhi configure nahi hua hai. index.html mein VP_GATE_URL ke andar apna VP short link paste karein.');
         return;
     }
