@@ -1,28 +1,1916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090b16">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Adavya Study Hub — Under Maintenance</title>
-  <style>
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#f7f7ff;background:radial-gradient(ellipse at 18% 12%,rgba(91,86,255,.25),transparent 38%),radial-gradient(ellipse at 85% 85%,rgba(231,91,190,.16),transparent 35%),#090b16}
-    .card{width:min(100%,560px);text-align:center;padding:clamp(28px,6vw,52px);border:1px solid rgba(255,255,255,.13);border-radius:28px;background:rgba(255,255,255,.055);backdrop-filter:blur(18px);box-shadow:0 24px 80px rgba(0,0,0,.38)}
-    .logo{display:inline-flex;align-items:center;justify-content:center;width:66px;height:66px;border-radius:22px;font-size:30px;font-weight:800;background:linear-gradient(135deg,#7478ff,#e879d5);box-shadow:0 8px 32px #7775ff44}
-    .eyebrow{margin:24px 0 10px;color:#b7baff;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}h1{margin:0;font-size:clamp(30px,7vw,44px);line-height:1.12;letter-spacing:-.04em}h1 span{background:linear-gradient(90deg,#9ba2ff,#f0a2df);-webkit-background-clip:text;background-clip:text;color:transparent}
-    p{margin:18px auto 0;max-width:410px;color:#c2c5d7;line-height:1.75;font-size:15px}.status{display:inline-flex;align-items:center;gap:9px;margin-top:28px;padding:10px 14px;border-radius:999px;border:1px solid #ffffff1c;background:#ffffff08;color:#e7e8f5;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:#f3c969;box-shadow:0 0 12px #f3c96999;animation:pulse 1.6s infinite}.footer{margin-top:34px;color:#777d99;font-size:12px;letter-spacing:.04em}@keyframes pulse{50%{opacity:.4;transform:scale(.8)}}@media(prefers-reduced-motion:reduce){.dot{animation:none}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adavya29 - Free Batch Search & Books Search Library</title>
+<meta name="description" content="Best digital library by Adavya. Get Class 10 & 11 reference books, sample papers, and study material. Free batch search and books search by Adavya29.">
+<meta name="keywords" content="adavya, adavya29, books search, free batch search, Class 10 books, Class 11 notes, CBSE, JEE, NEET, study material">
+<meta name="author" content="Adavya">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="m8s68vA9dEBk26G93CVH7rrdrunYGHba23wgLvUxms0" />
+<meta property="og:title" content="Adavya29 - Free Batch & Books Library" />
+<meta property="og:description" content="Access Class 10 & 11 study material, reference books, and batch search for free." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://adavya29.github.io/" />
+<meta property="og:image" content="https://adavya29.github.io/preview.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<link rel="icon" type="image/png" href="https://adavya29.github.io/preview.png">
+
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- FIREBASE SDK (Preserved for future authentication activation) -->
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
+
+<style>
+/* ==========================================================================
+   PREMIUM COLOR SYSTEM & DESIGN TOKENS
+   Deep Navy -> Royal Blue -> Electric Blue -> Soft Violet
+   ========================================================================== */
+:root {
+    --bg-base: #030712;
+    --navy-deep: #07111F;
+    --blue-royal: #2563EB;
+    --blue-electric: #38BDF8;
+    --violet-soft: #7C3AED;
+    --lavender-subtle: #A78BFA;
+
+    --bg-card: rgba(7, 17, 31, 0.88);
+    --glass-border: rgba(56, 189, 248, 0.12);
+    --glass-border-hover: rgba(56, 189, 248, 0.32);
+
+    /* Gradients */
+    --brand-gradient: linear-gradient(135deg, #2563EB 0%, #4F46E5 50%, #7C3AED 100%);
+    --brand-gradient-text: linear-gradient(135deg, #38BDF8 0%, #60A5FA 45%, #A78BFA 100%);
+
+    /* Ambient Glow Palette */
+    --aura-blue: rgba(37, 99, 235, 0.28);
+    --aura-electric: rgba(56, 189, 248, 0.18);
+    --aura-violet: rgba(124, 58, 237, 0.22);
+
+    /* Typography */
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Radii & Timing */
+    --radius-card: 22px;
+    --radius-pill: 9999px;
+    --radius-btn: 14px;
+    --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RESET & FOUNDATIONS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+}
+
+/* Background Atmosphere */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 14%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 82% 20%, rgba(124, 58, 237, 0.08), transparent 36%),
+        radial-gradient(circle at 50% 80%, rgba(37, 99, 235, 0.06), transparent 42%),
+        linear-gradient(180deg, #02050b 0%, #030816 50%, #02050e 100%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Ambient Grid Texture */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 56px 56px;
+    z-index: -1;
+    pointer-events: none;
+    mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
+}
+
+.gradient-text {
+    background: var(--brand-gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   FLOATING GLASS NAVBAR
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 12px;
+    z-index: 1000;
+    width: min(1180px, calc(100% - 32px));
+    margin: 12px auto 0;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(7, 17, 31, 0.75);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all var(--transition-smooth);
+}
+
+.navbar.scrolled {
+    background: rgba(6, 11, 23, 0.92);
+    border-color: rgba(56, 189, 248, 0.22);
+    box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.6), 0 0 18px -8px rgba(37, 99, 235, 0.25);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(124, 58, 237, 0.22));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 1.05rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.86rem;
+    transition: color var(--transition-smooth), transform var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 15px;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(124, 58, 237, 0.18));
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all var(--transition-smooth);
+}
+
+.nav-cta:hover {
+    border-color: rgba(56, 189, 248, 0.55);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.32), rgba(124, 58, 237, 0.32));
+    color: #fff;
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.35);
+}
+
+/* ==========================================================================
+   ELEVATED COMPACT HERO SECTION
+   ========================================================================== */
+.hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px 6px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+.hero-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.welcome {
+    font-size: clamp(2.3rem, 5.2vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    font-size: clamp(0.92rem, 1.8vw, 1.08rem);
+    max-width: 560px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   SEARCH BAR
+   ========================================================================== */
+.search-area {
+    max-width: 700px;
+    width: calc(100% - 32px);
+    margin: 16px auto 12px;
+    position: relative;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(7, 17, 31, 0.65);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-smooth);
+}
+
+.search-wrapper:focus-within {
+    border-color: rgba(56, 189, 248, 0.45);
+    background: rgba(7, 17, 31, 0.9);
+    box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.6), 0 0 22px -5px rgba(37, 99, 235, 0.25);
+}
+
+.search-icon-btn {
+    position: absolute;
+    left: 18px;
+    color: var(--text-muted);
+    font-size: 1.08rem;
+    pointer-events: none;
+    transition: color var(--transition-smooth);
+}
+
+.search-wrapper:focus-within .search-icon-btn {
+    color: #38bdf8;
+}
+
+.search-box {
+    width: 100%;
+    padding: 15px 18px 15px 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.search-box::placeholder {
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   COMPACT FILTERS CONTROL & DROPDOWN/POPOVER PANEL
+   ========================================================================== */
+.filter-control-area {
+    position: relative;
+    max-width: 700px;
+    width: calc(100% - 32px);
+    margin: 0 auto 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(7, 17, 31, 0.7);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.4);
+    transition: all var(--transition-smooth);
+}
+
+.filter-toggle-btn:hover {
+    color: #fff;
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(14, 27, 49, 0.85);
+    transform: translateY(-1.5px);
+    box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.25);
+}
+
+.filter-toggle-btn.active {
+    color: #fff;
+    border-color: rgba(56, 189, 248, 0.55);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(124, 58, 237, 0.25));
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.filter-toggle-icon {
+    font-size: 0.92rem;
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.filter-toggle-btn.active .filter-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.filter-active-pill {
+    display: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--brand-gradient);
+    color: #fff;
+    margin-left: 2px;
+}
+
+.filter-active-pill.visible {
+    display: inline-block;
+}
+
+/* POPOVER / DROPDOWN PANEL (HIDDEN BY DEFAULT) */
+.filter-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    z-index: 100;
+    width: min(560px, 96vw);
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(7, 17, 31, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 25px -8px rgba(37, 99, 235, 0.3);
+    display: none;
+    animation: popoverFadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-panel.show {
+    display: block;
+}
+
+@keyframes popoverFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.filter-panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.filter-grid-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.filter-chip {
+    white-space: nowrap;
+    border: 1px solid var(--glass-border);
+    background: rgba(14, 27, 49, 0.55);
+    color: var(--text-secondary);
+    padding: 9px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: inherit;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+    user-select: none;
+}
+
+.filter-chip:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(56, 189, 248, 0.35);
+    transform: translateY(-1.5px);
+}
+
+.filter-chip.active {
+    color: #ffffff;
+    background: var(--brand-gradient);
+    border-color: transparent;
+    box-shadow: 0 8px 20px -5px rgba(37, 99, 235, 0.5);
+}
+
+/* ==========================================================================
+   STATIC RESPONSIVE GRID LAYOUT (NATURAL ROWS)
+   Row 1: Card | Card | Card
+   Row 2: Card | Card | Card
+   Row 3: Card | Card | Card
+   ========================================================================== */
+.container {
+    width: min(1280px, calc(100% - 32px));
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-header {
+    margin-bottom: 20px;
+    padding: 0 4px;
+}
+
+.section-title-wrap {
+    display: inline-block;
+}
+
+.section-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.section-glow-line {
+    width: 48px;
+    height: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--brand-gradient);
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.section-subtitle {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* Multi-column Grid: auto-adapting rows */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 4px 4px 40px;
+    width: 100%;
+    overflow: visible;
+}
+
+/* ==========================================================================
+   SOPHISTICATED LUXURIOUS CARD & HOVER GLOW
+   ========================================================================== */
+.card {
+    position: relative;
+    border-radius: var(--radius-card);
+    padding: 22px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--transition-smooth), 
+                border-color var(--transition-smooth), 
+                box-shadow var(--transition-smooth);
+    will-change: transform;
+    isolation: isolate;
+    overflow: visible;
+}
+
+/* Diffused ambient back-projected glow (Royal Blue + Soft Violet) */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: calc(var(--radius-card) + 12px);
+    background: 
+        radial-gradient(circle at 50% 100%, var(--aura-blue), transparent 65%),
+        radial-gradient(circle at 50% 20%, var(--aura-violet), transparent 60%),
+        radial-gradient(circle at 10% 80%, var(--aura-electric), transparent 50%);
+    filter: blur(24px);
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transform: translateZ(0);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Inner chassis highlight */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--glass-border-hover);
+        box-shadow: 
+            0 24px 50px -10px rgba(0, 0, 0, 0.8), 
+            0 0 24px -6px rgba(37, 99, 235, 0.22);
+        z-index: 10;
+    }
+
+    .card:hover::before {
+        opacity: 1;
+        transform: scale(1.03) translateZ(0);
+    }
+
+    .card:hover .card-image-box img,
+    .card:hover .card-emoji-box {
+        transform: scale(1.05);
+        filter: brightness(1.12);
+    }
+
+    .card:hover h2,
+    .card:hover h3 {
+        color: #fff;
+    }
+}
+
+.card:active {
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(56, 189, 248, 0.35);
+}
+
+.card:active::before {
+    opacity: 0.7;
+}
+
+/* Card Internal Layout */
+.card-header-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.card-image-box {
+    width: 100%;
+    height: 140px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image-box img,
+.card-image {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+    transition: transform var(--transition-smooth), filter var(--transition-smooth);
+    display: block;
+}
+
+.card-emoji-box {
+    font-size: 52px;
+    transition: transform var(--transition-smooth), filter var(--transition-smooth);
+    user-select: none;
+}
+
+.card h2, .card h3 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: #f1f5f9;
+    margin-bottom: 5px;
+    text-align: center;
+    transition: color var(--transition-smooth);
+}
+
+.card p {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    text-align: center;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Platform Subdued Accents */
+.card.next {
+    background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 70%), var(--bg-card);
+}
+.card.mission {
+    background: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.08), transparent 70%), var(--bg-card);
+}
+.card.pw {
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%), var(--bg-card);
+}
+.card.vibrant {
+    background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.1), transparent 70%), var(--bg-card);
+}
+.card.unacademy {
+    background: radial-gradient(circle at 50% 0%, rgba(8, 189, 128, 0.1), transparent 70%), var(--bg-card);
+}
+.card.rwa {
+    background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08), transparent 70%), var(--bg-card);
+}
+.card.science-fun {
+    background: radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08), transparent 70%), var(--bg-card);
+}
+
+/* ==========================================================================
+   PREMIUM SAAS/EDTECH LAUNCH BUTTON
+   ========================================================================== */
+.launch {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px 16px;
+    border-radius: var(--radius-btn);
+    background: rgba(14, 27, 49, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #f1f5f9;
+    text-decoration: none;
+    font-weight: 750;
+    font-size: 0.81rem;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 10px rgba(37, 99, 235, 0.08);
+    transition: transform var(--transition-smooth), 
+                background 0.35s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease, 
+                color 0.2s ease;
+    overflow: hidden;
+}
+
+.launch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+@media (hover: hover) {
+    .launch:hover {
+        transform: translateY(-2px) scale(1.03);
+        background: linear-gradient(135deg, #2563EB, #4F46E5, #7C3AED);
+        border-color: rgba(56, 189, 248, 0.55);
+        color: #ffffff;
+        box-shadow: 
+            0 8px 24px -4px rgba(37, 99, 235, 0.45),
+            0 0 16px rgba(56, 189, 248, 0.3);
+    }
+
+    .launch:hover::before {
+        left: 140%;
+    }
+}
+
+.launch:active {
+    transform: scale(0.98);
+}
+
+.launch.pending-link {
+    cursor: default;
+    opacity: 0.85;
+}
+
+@media (hover: hover) {
+    .launch.pending-link:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 18px -4px rgba(37, 99, 235, 0.35);
+    }
+}
+
+/* ==========================================================================
+   IMPORTANT RESOURCES SECTION
+   ========================================================================== */
+.important {
+    max-width: 860px;
+    margin: 10px auto 45px;
+    padding: 28px 24px;
+    text-align: center;
+    border-radius: var(--radius-card);
+    background: rgba(7, 17, 31, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.important::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    background: var(--brand-gradient);
+}
+
+.important h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.important p {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   FOOTER & BACK TO TOP
+   ========================================================================== */
+footer {
+    position: relative;
+    text-align: center;
+    padding: 28px 18px;
+    background: rgba(3, 7, 18, 0.7);
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.top-btn {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(7, 17, 31, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-smooth);
+    backdrop-filter: blur(10px);
+}
+
+.top-btn:hover {
+    background: var(--brand-gradient);
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+}
+
+/* ==========================================================================
+   MODALS / OVERLAYS
+   ========================================================================== */
+.login-overlay, .site-overlay, .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    background: rgba(2, 6, 18, 0.84);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.instagram-popup {
+    position: relative;
+    width: min(390px, 100%);
+    padding: 34px 26px 26px;
+    text-align: center;
+    border-radius: 26px;
+    background: linear-gradient(165deg, rgba(7, 17, 31, 0.96) 0%, rgba(4, 9, 18, 0.98) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    box-shadow: 0 26px 70px -10px rgba(0, 0, 0, 0.85), 0 0 35px -10px rgba(37, 99, 235, 0.25);
+    animation: popupIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popupIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.insta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(37, 99, 235, 0.28));
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    font-size: 30px;
+    margin: 0 auto 15px;
+    box-shadow: 0 8px 24px -4px rgba(56, 189, 248, 0.25);
+}
+
+.instagram-popup h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.instagram-popup p {
+    font-size: 0.9rem;
+    color: #38bdf8;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.insta-follow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: var(--radius-btn);
+    background: linear-gradient(135deg, #0284c7, #2563eb);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 8px 22px -4px rgba(37, 99, 235, 0.5);
+    transition: all var(--transition-smooth);
+    margin-bottom: 12px;
+}
+
+.insta-follow:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 12px 26px -4px rgba(37, 99, 235, 0.65);
+}
+
+.skip {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all var(--transition-smooth);
+}
+
+.skip:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.site-popup {
+    position: relative;
+    width: min(1200px, 96vw);
+    height: min(820px, 90vh);
+    background: #07111F;
+    border: 1px solid var(--glass-border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7);
+    animation: popupIn 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: rgba(7, 17, 31, 0.85);
+    color: white;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-smooth);
+}
+
+.site-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.site-refresh {
+    position: absolute;
+    top: 14px;
+    right: 58px;
+    z-index: 10;
+    height: 36px;
+    padding: 0 13px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(7, 17, 31, 0.85);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all var(--transition-smooth);
+}
+
+.site-refresh:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.site-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #fff;
+}
+
+/* ==========================================================================
+   HIDDEN AUTH PRESERVATION
+   ========================================================================== */
+.auth-hidden-container {
+    display: none !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS & OPTIMIZED MOBILE LAYOUT
+   ========================================================================== */
+@media (max-width: 1080px) {
+    .resource-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Tablet Optimizations */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding: 30px 16px 8px;
+    }
+
+    .welcome {
+        font-size: clamp(2rem, 5.2vw, 2.8rem);
+    }
+
+    .search-area {
+        margin: 16px auto 14px;
+    }
+
+    .filter-control-area {
+        margin-bottom: 20px;
+    }
+
+    .resource-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .card {
+        padding: 18px 14px;
+    }
+
+    .card-image-box {
+        height: 130px;
+    }
+}
+
+/* Mobile-First Compact & Elevated Layout */
+@media (max-width: 640px) {
+    .navbar {
+        width: calc(100% - 24px);
+        margin-top: 10px;
+        padding: 7px 12px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo-badge {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    .logo-name {
+        font-size: 0.9rem;
+    }
+
+    .nav-cta {
+        padding: 5px 11px;
+        font-size: 0.74rem;
+    }
+
+    /* 1. HERO SECTION: Elevated, tight, immediate */
+    .hero {
+        padding: 18px 12px 6px;
+    }
+
+    .hero-pill {
+        margin-bottom: 8px;
+        padding: 4px 9px;
+        font-size: 0.68rem;
+    }
+
+    .welcome {
+        font-size: 1.8rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+        line-height: 1.15;
+    }
+
+    .hero p {
+        font-size: 0.84rem;
+        line-height: 1.4;
+        max-width: 320px;
+    }
+
+    /* 2. SEARCH BAR: Streamlined & ergonomic */
+    .search-area {
+        width: calc(100% - 20px);
+        margin: 12px auto 10px;
+    }
+
+    .search-box {
+        padding: 12px 14px 12px 42px;
+        font-size: 0.88rem;
+    }
+
+    .search-icon-btn {
+        left: 14px;
+        font-size: 0.95rem;
+    }
+
+    .search-wrapper {
+        border-radius: 15px;
+    }
+
+    /* 3. COMPACT FILTERS BUTTON & POPOVER (MOBILE) */
+    .filter-control-area {
+        width: calc(100% - 20px);
+        margin-bottom: 16px;
+    }
+
+    .filter-toggle-btn {
+        padding: 7px 15px;
+        font-size: 0.78rem;
+    }
+
+    .filter-panel {
+        width: calc(100vw - 32px);
+        padding: 14px;
+    }
+
+    .filter-grid-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .filter-chip {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+        border-radius: 10px;
+    }
+
+    /* 4. SECTION HEADING: Fast transition to resources */
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .section-header {
+        margin-bottom: 14px;
+        padding: 0 2px;
+    }
+
+    .section-title {
+        font-size: 1.22rem;
+    }
+
+    .section-glow-line {
+        width: 38px;
+        height: 2.5px;
+        margin-top: 4px;
+    }
+
+    .section-subtitle {
+        font-size: 0.78rem;
+        margin-top: 4px;
+        line-height: 1.35;
+    }
+
+    /* 5. RESOURCE CARDS: Clean 1-column responsive stack */
+    .resource-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 0 0 28px;
+    }
+
+    .card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .card-image-box {
+        height: 120px;
+        margin-bottom: 12px;
+        border-radius: 14px;
+    }
+
+    .card h2, .card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+    }
+
+    .card p {
+        font-size: 0.8rem;
+        margin-bottom: 14px;
+        line-height: 1.4;
+    }
+
+    .launch {
+        padding: 10px 14px;
+        font-size: 0.78rem;
+        border-radius: 11px;
+    }
+
+    /* Notice & Modal mobile tuning */
+    .important {
+        margin: 8px auto 28px;
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
+
+    .important h2 {
+        font-size: 1.12rem;
+        margin-bottom: 5px;
+    }
+
+    .important p {
+        font-size: 0.79rem;
+        line-height: 1.4;
+    }
+
+    footer {
+        padding: 22px 14px;
+        font-size: 0.76rem;
+    }
+
+    .site-popup {
+        width: 100vw;
+        height: 94vh;
+        border-radius: 16px;
+    }
+
+    .top-btn {
+        right: 14px;
+        bottom: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Narrow Phone Adjustment */
+@media (max-width: 360px) {
+    .filter-grid-options {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome {
+        font-size: 1.6rem;
+    }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* VP Link batch access indicator (existing site styling preserved) */
+.launch.vp-locked::after {
+    content: "  🔒";
+    font-size: 0.9em;
+    margin-left: 3px;
+}
+
+</style>
 </head>
+
 <body>
-  <main class="card">
-    <div class="logo" aria-label="Adavya">A</div>
-    <div class="eyebrow">Adavya Study Hub</div>
-    <h1>We’ll be back <span>soon.</span></h1>
-    <p>We’re making a few improvements to bring you a smoother study experience. The website is temporarily under maintenance.</p>
-    <div class="status"><span class="dot"></span> Maintenance in progress</div>
-    <p>Thank you for your patience and support. Keep learning, keep growing. ✨</p>
-    <div class="footer">STUDY SMARTER, ACHIEVE BEYOND</div>
-  </main>
+
+<!-- ==========================================================================
+     NAVBAR
+     ========================================================================== -->
+<nav class="navbar" id="mainNav">
+    <div class="nav-content">
+        <a href="#home" class="logo">
+            <span class="logo-badge">📚</span>
+            <span class="logo-name gradient-text">Study Hub</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#resources">Resources</a>
+            <a href="#important">Important</a>
+        </div>
+
+        <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer" class="nav-cta">
+            <span>✈</span>
+            <span>Join Community</span>
+        </a>
+    </div>
+</nav>
+
+<!-- ==========================================================================
+     ELEVATED HERO SECTION
+     ========================================================================== -->
+<section class="hero" id="home">
+    <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Curated Educational Hub</span>
+    </div>
+    <h1 class="welcome">
+        <span class="gradient-text">Study Smarter,</span><br>
+        Achieve Beyond
+    </h1>
+    <p>Your premier portal for verified batches, curated academic notes, books, and interactive resources.</p>
+</section>
+
+<!-- ==========================================================================
+     SEARCH BAR
+     ========================================================================== -->
+<div class="search-area">
+    <div class="search-wrapper">
+        <span class="search-icon-btn">🔍</span>
+        <input
+            type="text"
+            id="search"
+            class="search-box"
+            placeholder="Search batches, subjects, notes, creators..."
+            autocomplete="off"
+            aria-label="Search resources"
+        >
+    </div>
+</div>
+
+<!-- ==========================================================================
+     COMPACT FILTERS CONTROL (HIDDEN UNTIL CLICKED)
+     ========================================================================== -->
+<div class="filter-control-area">
+    <button class="filter-toggle-btn" id="filterToggleBtn" onclick="toggleFilterPanel(event)" aria-expanded="false" aria-controls="filterPanel">
+        <span class="filter-toggle-icon">⚙</span>
+        <span>Filters</span>
+        <span class="filter-active-pill" id="filterActiveBadge">All</span>
+    </button>
+
+    <!-- Compact Glass Popover Panel -->
+    <div class="filter-panel" id="filterPanel" role="region" aria-label="Platform filters">
+        <div class="filter-panel-title">
+            <span>Filter By Platform</span>
+            <span id="activeFilterName" style="color: #38bdf8;">All Platforms</span>
+        </div>
+        <div class="filter-grid-options" role="tablist">
+            <button class="filter-chip active" onclick="filterCards('all', this, 'All Platforms')">All</button>
+            <button class="filter-chip" onclick="filterCards('next', this, 'Next Toppers')">Next Toppers</button>
+            <button class="filter-chip" onclick="filterCards('mission', this, 'Mission Jeet')">Mission Jeet</button>
+            <button class="filter-chip" onclick="filterCards('pw', this, 'PW')">PW</button>
+            <button class="filter-chip" onclick="filterCards('sciencefun', this, 'Science & Fun')">Science and Fun</button>
+            <button class="filter-chip" onclick="filterCards('vibrant', this, 'Vibrant')">Vibrant Academy</button>
+            <button class="filter-chip" onclick="filterCards('unacademy', this, 'Unacademy')">Unacademy</button>
+            <button class="filter-chip" onclick="filterCards('rwa', this, 'Rojgar w/ Ankit')">Rojgar with Ankit</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     RESOURCES (RESPONSIVE MULTI-ROW GRID)
+     ========================================================================== -->
+<section class="container" id="resources">
+    <div class="section-header">
+        <div class="section-title-wrap">
+            <h2 class="section-title gradient-text">Featured Learning Portals</h2>
+            <div class="section-glow-line"></div>
+        </div>
+        <p class="section-subtitle">Verified portals and high-yield academic hubs ready for instant access</p>
+    </div>
+
+    <div class="resource-grid" id="resourceGrid">
+
+        <!-- 1. BOOKS CARD -->
+        <div class="card books" data-category="books">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <span class="card-emoji-box">📚</span>
+                </div>
+                <h2>Study Books</h2>
+                <p>Class 10th & 11th reference books, question banks & notes.</p>
+            </div>
+            <a href="books/" class="launch">LAUNCH PORTAL →</a>
+        </div>
+
+        <!-- 2. NEXT TOPPERS 1 -->
+        <div class="card next" data-category="next">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
+                </div>
+                <h2>Next Toppers 1</h2>
+                <p>Access your Next Toppers study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://eduvibe-nt.pages.dev')" class="launch">LAUNCH BATCH →</a>
+        </div>
+
+        <!-- 3. NEXT TOPPERS 2 (DESTINATION LINK REMOVED — READY FOR YOUR URL) -->
+        <div class="card next" data-category="next">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="nexttoppers.png" class="card-image" loading="lazy" decoding="async" alt="Next Toppers">
+                </div>
+                <h2>Next Toppers 2</h2>
+                <p>Explore another Next Toppers resource.</p>
+            </div>
+            <!-- INSERT YOUR URL BELOW: e.g. openSitePopup('YOUR_URL_HERE') OR href="YOUR_URL_HERE" -->
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/nexttoppers')"class="launch">LAUNCH BATCH →</a>
+        </div>
+
+        <!-- 4. PW 1 (MOVED DIRECTLY AFTER NEXT TOPPERS 2) -->
+        <div class="card pw" data-category="pw">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="pw.png" class="card-image" loading="lazy" decoding="async" alt="PW">
+                </div>
+                <h2>PW 1</h2>
+                <p>Physics Wallah study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live')" class="launch">LAUNCH BATCH →</a>
+        </div>
+
+        <!-- 5. SCIENCE AND FUN -->
+        <div class="card science-fun" data-category="sciencefun">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="scienceandfun.png" alt="Science and Fun Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Science and Fun</h2>
+                <p>Science and Fun study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="window.open('https://scienceandfun.nexthope.site/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
+        </div>
+
+        <!-- 6. SCIENCE AND FUN 2 -->
+        <div class="card science-fun" data-category="sciencefun">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="scienceandfun.png" alt="Science and Fun 2 Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Science and Fun 2</h2>
+                <p>Science and Fun study resources.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="window.open('https://pwspidey.live/study/scienceandfun/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
+        </div>
+
+        <!-- 7. MISSION JEET -->
+        <div class="card mission" data-category="mission">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="mission jeet.png" class="card-image" loading="lazy" decoding="async" alt="Mission Jeet">
+                </div>
+                <h2>Mission Jeet</h2>
+                <p>Continue your Mission Jeet preparation.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live/study/missionjeet')" class="launch">LAUNCH BATCH →</a>
+        </div>
+
+        <!-- 8. VIBRANT ACADEMY -->
+        <div class="card vibrant" data-category="vibrant">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="vibrant.png" alt="Vibrant Academy" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Vibrant Academy</h2>
+                <p>Explore Vibrant Academy Resources.</p>
+            </div>
+             <a href="javascript:void(0)" onclick="window.open('https://pwspidey.live/study/vibrant/','_blank')" class="launch">LAUNCH PORTAL ↗</a>
+        </div>
+
+        <!-- 9. UNACADEMY CARD -->
+        <div class="card unacademy" data-category="unacademy">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="unacademy.png" alt="Unacademy Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Unacademy</h2>
+                <p>Explore Unacademy Resources.</p>
+            </div>
+            <button type="button" class="launch" onclick="openSitePopup('https://nexthope.pages.dev/unacademy')">LAUNCH BATCH →</button>
+        </div>
+
+        <!-- 10. ROJGAR WITH ANKIT (RWA) CARD -->
+        <div class="card rwa" data-category="rwa">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="rwa.png" alt="Rojgar with Ankit Logo" class="card-image" loading="lazy" decoding="async">
+                </div>
+                <h2>Rojgar with Ankit</h2>
+                <p>Explore Rojgar with Ankit Resources.</p>
+            </div>
+            <button type="button" class="launch" onclick="openSitePopup('https://nexthope.pages.dev/rwa/')">LAUNCH BATCH →</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==========================================================================
+     IMPORTANT NOTICE SECTION
+     ========================================================================== -->
+<section class="important" id="important">
+    <h2 class="gradient-text">⭐ Important Resources & Guidelines</h2>
+    <p>Bookmark your primary learning tracks, access verified notes directly, and accelerate your preparation journey with zero distraction.</p>
+</section>
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer>
+    <div style="margin-bottom: 8px;">
+        Designed & Curated with pride by <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer">Adavya</a>
+    </div>
+    <div style="font-size: 0.76rem; opacity: 0.65;">
+        © 2026 Adavya29 Study Hub. All educational links belong to their respective creators.
+    </div>
+</footer>
+
+<!-- ==========================================================================
+     BACK TO TOP BUTTON
+     ========================================================================== -->
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">
+    ↑
+</button>
+
+<!-- ==========================================================================
+     TELEGRAM OVERLAY POPUP
+     ========================================================================== -->
+<div class="overlay" id="instaPopup">
+    <div class="instagram-popup">
+        <div class="insta-icon">✈</div>
+        <h2>Join Our Community</h2>
+        <p>@adavvya on Telegram</p>
+        <a href="https://t.me/adavvya" target="_blank" rel="noopener noreferrer" class="insta-follow">
+            Join Telegram Channel ↗
+        </a>
+        <button class="skip" onclick="closePopup()">
+            Skip & Continue to Platform →
+        </button>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     WEBSITE LAUNCH POPUP
+     ========================================================================== -->
+<div class="site-overlay" id="siteOverlay">
+    <div class="site-popup">
+        <button class="site-refresh" onclick="refreshSiteFrame()">↻ Refresh</button>
+        <button class="site-close" onclick="closeSitePopup()" aria-label="Close">✕</button>
+        <iframe id="siteFrame" class="site-frame" src="about:blank" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     PRESERVED AUTH INFRASTRUCTURE (INTENTIONALLY HIDDEN PER SPEC)
+     ========================================================================== -->
+<div class="auth-hidden-container" aria-hidden="true">
+    <button class="login-btn" id="loginBtn" onclick="openLoginPopup()"></button>
+    <div class="profile-area" id="profileArea">
+        <button class="profile-btn" onclick="toggleProfileMenu()">
+            <span id="profileName">User</span>
+        </button>
+        <div class="profile-menu" id="profileMenu">
+            <div class="profile-name" id="profileMenuName">User</div>
+            <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+    </div>
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-popup">
+            <button class="login-close" onclick="closeLoginPopup()">✕</button>
+            <input type="text" id="nameInput">
+            <input type="tel" id="phoneInput">
+            <div id="recaptcha-container"></div>
+            <button class="otp-btn" id="sendOtpBtn" onclick="sendOTP()"></button>
+            <div id="otpSection">
+                <input type="text" id="otpInput">
+                <button class="otp-btn" id="verifyOtpBtn" onclick="verifyOTP()"></button>
+            </div>
+            <div id="loginMessage"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================================================
+     JAVASCRIPT CORE
+     ========================================================================== -->
+<script>
+/* Navbar compact state */
+const navbar = document.getElementById("mainNav");
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", function () {
+    const scrollPos = window.scrollY;
+    if (scrollPos > 30) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+
+    if (topBtn) {
+        topBtn.style.display = scrollPos > 400 ? "flex" : "none";
+    }
+}, { passive: true });
+
+/* Auto open telegram popup on initial load */
+window.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        const popup = document.getElementById("instaPopup");
+        if (popup) {
+            popup.style.display = "flex";
+        }
+    }, 900);
+});
+
+function closePopup() {
+    const popup = document.getElementById("instaPopup");
+    if (popup) {
+        popup.style.display = "none";
+    }
+}
+
+/* Fast Search Filtering */
+const searchBox = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+searchBox.addEventListener("input", function () {
+    const query = this.value.toLowerCase().trim();
+    cards.forEach(function (card) {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? "" : "none";
+    });
+});
+
+/* Toggle Filters Popover Panel */
+const filterPanel = document.getElementById("filterPanel");
+const filterToggleBtn = document.getElementById("filterToggleBtn");
+
+function toggleFilterPanel(event) {
+    if (event) event.stopPropagation();
+    const isOpen = filterPanel.classList.contains("show");
+    if (isOpen) {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    } else {
+        filterPanel.classList.add("show");
+        filterToggleBtn.classList.add("active");
+        filterToggleBtn.setAttribute("aria-expanded", "true");
+    }
+}
+
+/* Close Popover on Outside Click */
+document.addEventListener("click", function (event) {
+    if (!filterPanel.contains(event.target) && !filterToggleBtn.contains(event.target)) {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    }
+});
+
+/* Category Button Filtering */
+function filterCards(category, button, label) {
+    document.querySelectorAll(".filter-chip").forEach(function (btn) {
+        btn.classList.remove("active");
+    });
+    button.classList.add("active");
+
+    const badge = document.getElementById("filterActiveBadge");
+    const labelHeader = document.getElementById("activeFilterName");
+
+    if (category === "all") {
+        badge.classList.remove("visible");
+        badge.textContent = "All";
+        labelHeader.textContent = "All Platforms";
+    } else {
+        badge.classList.add("visible");
+        badge.textContent = label || category;
+        labelHeader.textContent = label || category;
+    }
+
+    cards.forEach(function (card) {
+        if (category === "all") {
+            card.style.display = "";
+        } else if (card.dataset.category && card.dataset.category.includes(category)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    /* Automatically collapse panel after selection */
+    setTimeout(() => {
+        filterPanel.classList.remove("show");
+        filterToggleBtn.classList.remove("active");
+        filterToggleBtn.setAttribute("aria-expanded", "false");
+    }, 180);
+}
+
+/* Site Frame Popup */
+const siteOverlay = document.getElementById("siteOverlay");
+const siteFrame = document.getElementById("siteFrame");
+
+function openSitePopup(url) {
+    if (!url) return;
+    siteFrame.src = url;
+    siteOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeSitePopup() {
+    siteOverlay.style.display = "none";
+    siteFrame.src = "about:blank";
+    document.body.style.overflow = "";
+}
+
+function refreshSiteFrame() {
+    const frame = document.getElementById("siteFrame");
+    if (frame) {
+        try {
+            frame.contentWindow.location.reload();
+        } catch (error) {
+            const currentSrc = frame.src;
+            frame.src = "about:blank";
+            setTimeout(function () {
+                frame.src = currentSrc;
+            }, 50);
+        }
+    }
+}
+
+/* Preserved Firebase Stubs */
+const firebaseConfig = {
+    apiKey: "AIzaSyAlQy1g9Y_Mm9QY-q6MF1oK53rKEn1tKKU",
+    authDomain: "adavya-study-hub.firebaseapp.com",
+    projectId: "adavya-study-hub",
+    storageBucket: "adavya-study-hub.firebasestorage.app",
+    messagingSenderId: "1087086249986",
+    appId: "1:1087086249986:web:41ec61723171aa165abf1b"
+};
+
+try {
+    firebase.initializeApp(firebaseConfig);
+} catch (e) {}
+
+const auth = typeof firebase !== 'undefined' ? firebase.auth() : null;
+let confirmationResult = null;
+let recaptchaVerifier = null;
+
+function openLoginPopup() {
+    const overlay = document.getElementById("loginOverlay");
+    if (overlay) overlay.style.display = "flex";
+}
+
+function closeLoginPopup() {
+    const overlay = document.getElementById("loginOverlay");
+    if (overlay) overlay.style.display = "none";
+}
+
+function sendOTP() {}
+function verifyOTP() {}
+function logoutUser() {
+    if (auth) auth.signOut();
+}
+function toggleProfileMenu() {}
+
+
+/* =====================================================================
+   VP LINK BATCH ACCESS GATE — MONTHLY RESET ON THE 5TH
+   Books card is deliberately excluded. Do not place API tokens in this file.
+   IMPORTANT: replace the placeholder below with your VP Link short URL.
+   This version opens your VP Link in a new tab; Books remains excluded.
+   ===================================================================== */
+const VP_GATE_URL = "https://vplink.in/6xnmy";
+const VP_ACCESS_STORAGE_KEY = "adavya_vp_batch_access_until_v1";
+function vpNextResetTimestamp(now = new Date()) {
+    // Access expires at local midnight on the next 5th of the month.
+    const reset = new Date(now.getFullYear(), now.getMonth(), 5, 0, 0, 0, 0);
+    if (now.getTime() >= reset.getTime()) {
+        reset.setMonth(reset.getMonth() + 1);
+    }
+    return reset.getTime();
+}
+
+function vpHasBatchAccess() {
+    try {
+        const until = Number(localStorage.getItem(VP_ACCESS_STORAGE_KEY) || 0);
+        if (until > Date.now()) return true;
+        localStorage.removeItem(VP_ACCESS_STORAGE_KEY);
+    } catch (e) {}
+    return false;
+}
+
+function vpRefreshBatchButtons() {
+    const unlocked = vpHasBatchAccess();
+    document.querySelectorAll('#resourceGrid .card:not(.books) .launch').forEach(function (button) {
+        button.classList.toggle('vp-locked', !unlocked);
+        button.setAttribute('aria-label', (button.textContent || 'Launch').trim() + (unlocked ? '' : ' — ad unlock required'));
+    });
+}
+
+function vpStartGate() {
+    if (!VP_GATE_URL) {
+        alert('VP Link abhi configure nahi hua hai.');
+        return;
+    }
+    // Open VP Link in a new tab; keep this website open in the current tab.
+    const vpTab = window.open(VP_GATE_URL, '_blank', 'noopener,noreferrer');
+    if (!vpTab) {
+        alert('VP Link open nahi hua. Browser mein pop-ups allow karke dobara try karein.');
+    }
+}
+
+/* Capture clicks before existing onclick handlers; Books is never gated. */
+const vpResourceGrid = document.getElementById('resourceGrid');
+if (vpResourceGrid) {
+    vpResourceGrid.addEventListener('click', function (event) {
+        const launch = event.target.closest('.card:not(.books) .launch');
+        if (!launch || vpHasBatchAccess()) return;
+        event.preventDefault();
+        event.stopPropagation();
+        if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+        vpStartGate();
+    }, true);
+}
+
+vpRefreshBatchButtons();
+
+/* Refresh locked/unlocked button indicators when the Keyfree tab updates access. */
+window.addEventListener('storage', function (event) {
+    if (!event.key || event.key === VP_ACCESS_STORAGE_KEY) vpRefreshBatchButtons();
+});
+window.addEventListener('pageshow', vpRefreshBatchButtons);
+window.addEventListener('focus', vpRefreshBatchButtons);
+
+</script>
+
 </body>
 </html>
