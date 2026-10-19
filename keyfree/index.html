@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Adavya — Access Unlocked</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #090b16;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      padding: 35px 25px;
+      border: 1px solid #ffffff25;
+      border-radius: 24px;
+      background: #ffffff0b;
+      box-shadow: 0 20px 60px #0008;
+    }
+    .icon { font-size: 48px; }
+    h1 { font-size: 28px; }
+    p { color: #c5c9dc; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="icon">🔓</div>
+    <h1>Access Activated!</h1>
+    <p>Welcome to Adavya Study Hub.</p>
+    <p>Returning you to the website...</p>
+  </main>
+
+  <script>
+    const KEY = "adavya_vp_batch_access_until_v1";
+    const DURATION = 72 * 60 * 60 * 1000;
+
+    try {
+      localStorage.setItem(KEY, String(Date.now() + DURATION));
+
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 1800);
+    } catch (error) {
+      document.querySelector("main").innerHTML =
+        "<h1>Storage unavailable</h1><p>Please enable browser storage and try again.</p>";
+    }
+  </script>
+</body>
+</html>
