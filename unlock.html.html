@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Unlocking Adavya Study Hub…</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 15% 10%,#172554 0,transparent 38%),radial-gradient(circle at 85% 90%,#3b0764 0,transparent 36%),#050b16;color:#eef2ff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}.box{width:min(100%,460px);padding:32px 24px;text-align:center;border:1px solid #64748b55;border-radius:24px;background:#0f172acc;box-shadow:0 24px 70px #0008;backdrop-filter:blur(16px)}.icon{font-size:42px}h1{margin:12px 0;font-size:1.6rem}p{color:#cbd5e1;line-height:1.65}.bar{height:5px;overflow:hidden;border-radius:10px;background:#334155;margin:24px 0}.bar:after{content:"";display:block;height:100%;width:40%;border-radius:10px;background:linear-gradient(90deg,#38bdf8,#a78bfa);animation:move 1.2s ease-in-out infinite alternate}@keyframes move{to{transform:translateX(150%)}}a{color:#93c5fd}
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="icon">🔓</div>
+  <h1>Access ready!</h1>
+  <p>Your batch access is being enabled for this browser for <strong>72 hours</strong>. Returning to Adavya Study Hub…</p>
+  <div class="bar" aria-hidden="true"></div>
+  <p>If you are not redirected, <a id="returnLink" href="./index.html">tap here to return</a>.</p>
+</main>
+<script>
+(function () {
+  try {
+    const key = 'adavya_vp_batch_access_until_v1';
+    localStorage.setItem(key, String(Date.now() + 72 * 60 * 60 * 1000));
+  } catch (e) {
+    document.querySelector('main p').textContent = 'Your browser is blocking local storage. Please allow site storage and try again.';
+    return;
+  }
+  const target = new URL('./index.html?vp_unlocked=1', window.location.href);
+  document.getElementById('returnLink').href = target.href;
+  setTimeout(function () { window.location.replace(target.href); }, 1300);
+})();
+</script>
+</body>
+</html>
