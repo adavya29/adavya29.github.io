@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pi Pro Access | Adavya</title>
+</head>
+<body style="background:#080910;color:white;font-family:system-ui;text-align:center;padding:40px">
+  <h2>Activating Pi Pro...</h2>
+  <p>Please wait.</p>
+
+  <script>
+    const now = new Date();
+    const reset = new Date(
+      now.getFullYear(),
+      now.getMonth() + (now.getDate() >= 5 ? 1 : 0),
+      5, 0, 0, 0, 0
+    );
+
+    localStorage.setItem(
+      "adavya_pipro_access_until_v1",
+      String(reset.getTime())
+    );
+
+    setTimeout(() => {
+      location.replace("/Pi-pro/");
+    }, 1200);
+  </script>
+</body>
+</html>
