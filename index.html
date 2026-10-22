@@ -1499,6 +1499,19 @@ footer a {
             <a href="javascript:void(0)" onclick="openSitePopup('https://pwspidey.live')" class="launch">LAUNCH BATCH →</a>
         </div>
 
+
+        <!-- PI PRO: SEPARATE MONTHLY ACCESS GATE -->
+        <div class="card pi-pro" data-category="pip pro">
+            <div class="card-header-area">
+                <div class="card-image-box">
+                    <img src="pi-pro.png" class="card-image" loading="lazy" decoding="async" alt="Pi Pro">
+                </div>
+                <h2>Pi Pro</h2>
+                <p>Access Pi Pro learning tools.</p>
+            </div>
+            <a href="javascript:void(0)" onclick="openPiProPopup()" class="launch">LAUNCH PI PRO →</a>
+        </div>
+
         <!-- 5. SCIENCE AND FUN -->
         <div class="card science-fun" data-category="sciencefun">
             <div class="card-header-area">
@@ -1843,6 +1856,53 @@ function toggleProfileMenu() {}
 
 
 /* =====================================================================
+   PI PRO — SEPARATE VP LINK GATE / SEPARATE MONTHLY STORAGE KEY
+   This gate does not read or modify the main batch access key.
+   ===================================================================== */
+const PI_PRO_VP_URL = "https://vplink.in/iuHVGc";
+const PI_PRO_PAGE_URL = "https://adavya29.github.io/Pi-pro/";
+const PI_PRO_ACCESS_KEY = "adavya_pi_pro_access_until_v1";
+
+function piProNextResetTimestamp(now = new Date()) {
+    const reset = new Date(now.getFullYear(), now.getMonth(), 5, 0, 0, 0, 0);
+    if (now.getTime() >= reset.getTime()) reset.setMonth(reset.getMonth() + 1);
+    return reset.getTime();
+}
+
+function piProHasAccess() {
+    try {
+        const until = Number(localStorage.getItem(PI_PRO_ACCESS_KEY) || 0);
+        if (until > Date.now()) return true;
+        localStorage.removeItem(PI_PRO_ACCESS_KEY);
+    } catch (e) {}
+    return false;
+}
+
+function refreshPiProButton() {
+    const button = document.querySelector('#resourceGrid .card.pi-pro .launch');
+    if (button) {
+        const unlocked = piProHasAccess();
+        button.classList.toggle('vp-locked', !unlocked);
+        button.setAttribute('aria-label', 'Launch Pi Pro' + (unlocked ? '' : ' — ad unlock required'));
+    }
+}
+
+function openPiProPopup() {
+    if (!piProHasAccess()) {
+        const tab = window.open(PI_PRO_VP_URL, '_blank');
+        if (!tab) alert('VP Link open nahi hua. Browser mein pop-ups allow karke dobara try karein.');
+        return;
+    }
+    openSitePopup(PI_PRO_PAGE_URL);
+}
+
+window.addEventListener('storage', function (event) {
+    if (!event.key || event.key === PI_PRO_ACCESS_KEY) refreshPiProButton();
+});
+window.addEventListener('pageshow', refreshPiProButton);
+window.addEventListener('focus', refreshPiProButton);
+
+/* =====================================================================
    VP LINK BATCH ACCESS GATE — MONTHLY RESET ON THE 5TH
    Books card is deliberately excluded. Do not place API tokens in this file.
    IMPORTANT: replace the placeholder below with your VP Link short URL.
@@ -1870,7 +1930,7 @@ function vpHasBatchAccess() {
 
 function vpRefreshBatchButtons() {
     const unlocked = vpHasBatchAccess();
-    document.querySelectorAll('#resourceGrid .card:not(.books) .launch').forEach(function (button) {
+    document.querySelectorAll('#resourceGrid .card:not(.books):not(.pi-pro) .launch').forEach(function (button) {
         button.classList.toggle('vp-locked', !unlocked);
         button.setAttribute('aria-label', (button.textContent || 'Launch').trim() + (unlocked ? '' : ' — ad unlock required'));
     });
@@ -1892,7 +1952,7 @@ function vpStartGate() {
 const vpResourceGrid = document.getElementById('resourceGrid');
 if (vpResourceGrid) {
     vpResourceGrid.addEventListener('click', function (event) {
-        const launch = event.target.closest('.card:not(.books) .launch');
+        const launch = event.target.closest('.card:not(.books):not(.pi-pro) .launch');
         if (!launch || vpHasBatchAccess()) return;
         event.preventDefault();
         event.stopPropagation();
@@ -1902,6 +1962,7 @@ if (vpResourceGrid) {
 }
 
 vpRefreshBatchButtons();
+refreshPiProButton();
 
 /* Refresh locked/unlocked button indicators when the Keyfree tab updates access. */
 window.addEventListener('storage', function (event) {
