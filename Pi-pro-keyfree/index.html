@@ -1,30 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080910">
   <title>Pi Pro Access | Adavya</title>
 </head>
-<body style="background:#080910;color:white;font-family:system-ui;text-align:center;padding:40px">
+
+<body style="
+  background:#080910;
+  color:white;
+  font-family:system-ui,sans-serif;
+  text-align:center;
+  padding:40px;
+">
+
   <h2>Activating Pi Pro...</h2>
-  <p>Please wait.</p>
+  <p>Please wait while we return you to Adavya.</p>
 
   <script>
     const now = new Date();
+
+    // Next monthly reset: 5th day at 12:00 AM
     const reset = new Date(
       now.getFullYear(),
-      now.getMonth() + (now.getDate() >= 5 ? 1 : 0),
+      now.getDate() >= 5
+        ? now.getMonth() + 1
+        : now.getMonth(),
       5, 0, 0, 0, 0
     );
 
+    // Activate Pi Pro access
     localStorage.setItem(
       "adavya_pipro_access_until_v1",
       String(reset.getTime())
     );
 
+    // Return to the main website
     setTimeout(() => {
-      location.replace("/Pi-pro/");
+      location.replace("/");
     }, 1200);
   </script>
+
 </body>
 </html>
