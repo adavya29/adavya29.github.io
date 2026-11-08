@@ -1347,10 +1347,159 @@ footer a {
     margin-left: 3px;
 }
 
+
+
+/* ===================== ADAVYA DIWALI SPECIAL ===================== */
+:root {
+  --diwali-gold: #ffd778;
+  --diwali-amber: #ff9f43;
+  --diwali-maroon: #3a1025;
+}
+body.diwali-mode::before {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(255, 174, 66, .13), transparent 30%),
+    radial-gradient(circle at 85% 18%, rgba(255, 215, 120, .10), transparent 34%),
+    radial-gradient(circle at 50% 90%, rgba(180, 55, 35, .12), transparent 42%),
+    linear-gradient(180deg, #090711 0%, #100b18 52%, #080710 100%);
+}
+body.diwali-mode .gradient-text {
+  background-image: linear-gradient(110deg, #fff0b5, #ffc45d 42%, #ff8b45 75%, #ffe7a0);
+}
+body.diwali-mode .navbar,
+body.diwali-mode .search-wrapper,
+body.diwali-mode .filter-toggle-btn,
+body.diwali-mode .filter-panel,
+body.diwali-mode .card,
+body.diwali-mode .important {
+  border-color: rgba(255, 196, 93, .22);
+}
+body.diwali-mode .nav-cta,
+body.diwali-mode .launch {
+  border-color: rgba(255, 196, 93, .38);
+}
+body.diwali-mode .launch:hover {
+  background: linear-gradient(135deg, #9e431d, #d97725, #e9ad45);
+  border-color: #ffe0a0;
+  box-shadow: 0 8px 26px rgba(255, 155, 55, .28), 0 0 18px rgba(255, 210, 120, .2);
+}
+#diwaliFireworks {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 1200; pointer-events: none;
+}
+.diwali-lamps {
+  position: fixed; bottom: 12px; left: 14px; right: 14px;
+  display: flex; justify-content: space-between; pointer-events: none;
+  z-index: 1100; font-size: clamp(25px, 4vw, 39px);
+  filter: drop-shadow(0 0 10px rgba(255, 164, 55, .7));
+  animation: lampGlow 2.2s ease-in-out infinite alternate;
+}
+@keyframes lampGlow {
+  from { filter: drop-shadow(0 0 5px rgba(255, 164, 55, .45)); }
+  to { filter: drop-shadow(0 0 15px rgba(255, 194, 85, .95)); }
+}
+.diwali-controls {
+  position: fixed; right: 16px; bottom: 16px; z-index: 1300;
+  display: flex; gap: 8px; align-items: center;
+}
+.diwali-controls button {
+  border: 1px solid rgba(255, 211, 130, .4); color: #ffe7b0;
+  background: rgba(28, 15, 25, .82); backdrop-filter: blur(12px);
+  border-radius: 999px; padding: 9px 13px; font: 700 12px var(--font-main);
+  cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,.25);
+}
+.diwali-controls button:hover { background: rgba(125, 61, 31, .9); }
+.diwali-welcome {
+  position: fixed; inset: 0; z-index: 200000; display: flex;
+  align-items: center; justify-content: center; padding: 20px;
+  background: radial-gradient(ellipse at 50% 45%, rgba(102, 43, 36, .48), transparent 55%),
+              rgba(5, 5, 13, .97); backdrop-filter: blur(18px);
+}
+.diwali-welcome-card {
+  width: min(560px, 100%); text-align: center; padding: clamp(28px, 6vw, 52px) 24px;
+  border: 1px solid rgba(255, 207, 119, .42); border-radius: 30px;
+  background: linear-gradient(145deg, rgba(47, 21, 34, .96), rgba(14, 11, 22, .98));
+  box-shadow: 0 25px 90px rgba(0,0,0,.6), 0 0 55px rgba(255, 153, 58, .13);
+  position: relative; overflow: hidden;
+}
+.diwali-welcome-card::before {
+  content:""; position:absolute; inset:-60%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,210,130,.08), transparent 25%);
+  animation: diwaliSpin 14s linear infinite; pointer-events:none;
+}
+@keyframes diwaliSpin { to { transform: rotate(360deg); } }
+.diwali-welcome-content { position: relative; z-index: 1; }
+.diwali-big-diya {
+  font-size: clamp(62px, 12vw, 90px); line-height: 1.2; display: block;
+  filter: drop-shadow(0 0 18px rgba(255, 163, 54, .8));
+  animation: diyaFloat 2.4s ease-in-out infinite;
+}
+@keyframes diyaFloat { 50% { transform: translateY(-7px) scale(1.04); } }
+.diwali-welcome h1 {
+  margin: 14px 0 10px; font-size: clamp(2rem, 7vw, 3.4rem);
+  line-height: 1.08; font-weight: 900; letter-spacing: -.04em;
+  color: #ffe1a0; text-shadow: 0 0 25px rgba(255, 169, 63, .25);
+}
+.diwali-welcome p { color: #e8cdb4; line-height: 1.7; font-size: .96rem; }
+.diwali-welcome .diwali-signoff { margin: 14px 0 24px; color: #ffc56f; font-weight: 800; }
+.diwali-enter {
+  border: 0; border-radius: 999px; padding: 13px 25px; cursor: pointer;
+  color: #351525; font: 900 .9rem var(--font-main); letter-spacing: .5px;
+  background: linear-gradient(135deg, #ffe6a3, #ffb34f, #ffda83);
+  box-shadow: 0 8px 28px rgba(255, 166, 65, .3); transition: transform .2s, box-shadow .2s;
+}
+.diwali-enter:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255, 166, 65, .45); }
+@media (max-width: 640px) {
+  .diwali-controls { right: 10px; bottom: 10px; }
+  .diwali-controls button { padding: 8px 11px; }
+  .diwali-lamps { bottom: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #diwaliFireworks, .diwali-lamps { display: none !important; }
+  .diwali-big-diya, .diwali-welcome-card::before { animation: none !important; }
+}
+
 </style>
 </head>
 
-<body>
+<body class="diwali-mode" style="overflow:hidden">
+<script>
+(function () {
+  const now = new Date();
+  const isDiwaliDay = now.getFullYear() === 2026 && now.getMonth() === 10 && now.getDate() === 8;
+  window.__diwaliActive = isDiwaliDay;
+  if (!isDiwaliDay) {
+    document.body.classList.remove("diwali-mode");
+    document.body.style.overflow = "";
+    window.addEventListener("DOMContentLoaded", function () {
+      ["diwaliFireworks", "diwaliWelcome"].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      });
+      document.querySelectorAll(".diwali-lamps, .diwali-controls").forEach(function (el) {
+        el.style.display = "none";
+      });
+    });
+  }
+})();
+</script>
+
+<canvas id="diwaliFireworks" aria-hidden="true"></canvas>
+<div class="diwali-lamps" aria-hidden="true"><span>🪔</span><span>🪔</span></div>
+<div class="diwali-controls">
+  <button type="button" id="soundToggle" aria-pressed="false">🔇 Sound Off</button>
+</div>
+<div class="diwali-welcome" id="diwaliWelcome" role="dialog" aria-modal="true" aria-label="Happy Diwali greeting">
+  <div class="diwali-welcome-card">
+    <div class="diwali-welcome-content">
+      <span class="diwali-big-diya">🪔</span>
+      <h1>HAPPY<br>DIWALI!</h1>
+      <p>May this festival of lights fill your life with happiness, success, peace and endless possibilities.</p>
+      <p class="diwali-signoff">Warm wishes from Team Adavya ❤️</p>
+      <button class="diwali-enter" type="button" onclick="enterDiwaliSite()">ENTER WEBSITE✨</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- ==========================================================================
      NAVBAR
@@ -1702,14 +1851,16 @@ window.addEventListener("scroll", function () {
 }, { passive: true });
 
 /* Auto open telegram popup on initial load */
-window.addEventListener("DOMContentLoaded", function () {
+function enterDiwaliSite() {
+    const welcome = document.getElementById("diwaliWelcome");
+    if (welcome) welcome.style.display = "none";
+    document.body.style.overflow = "";
+    // Keep the existing Telegram community popup, but show it after the greeting.
     setTimeout(function () {
         const popup = document.getElementById("instaPopup");
-        if (popup) {
-            popup.style.display = "flex";
-        }
-    }, 900);
-});
+        if (popup) popup.style.display = "flex";
+    }, 1100);
+}
 
 function closePopup() {
     const popup = document.getElementById("instaPopup");
@@ -1978,6 +2129,94 @@ window.addEventListener('storage', function (event) {
 });
 window.addEventListener('pageshow', vpRefreshBatchButtons);
 window.addEventListener('focus', vpRefreshBatchButtons);
+
+
+/* ===================== DIWALI FIREWORKS + OPTIONAL SOUND ===================== */
+(function initDiwaliCelebration() {
+    if (window.__diwaliActive === false) return;
+    const canvas = document.getElementById("diwaliFireworks");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let width = 0, height = 0, particles = [], rockets = [], lastLaunch = 0;
+    let soundOn = false, audioContext = null;
+
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+        width = window.innerWidth; height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr); canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    function launchRocket() {
+        rockets.push({
+            x: width * (.12 + Math.random() * .76), y: height + 8,
+            targetY: height * (.12 + Math.random() * .42),
+            speed: 4.2 + Math.random() * 2.2,
+            hue: [35, 45, 8, 320, 190, 270][Math.floor(Math.random() * 6)]
+        });
+    }
+    function burst(x, y, hue) {
+        const count = 34 + Math.floor(Math.random() * 24);
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 1.1 + Math.random() * 3.2;
+            particles.push({
+                x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                life: 48 + Math.random() * 28, maxLife: 76,
+                hue: hue + (Math.random() * 24 - 12), size: 1 + Math.random() * 1.8
+            });
+        }
+        if (soundOn) playChime();
+    }
+    function playChime() {
+        try {
+            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioContext.state === "suspended") audioContext.resume();
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = "sine"; osc.frequency.setValueAtTime(660 + Math.random() * 300, audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(240, audioContext.currentTime + .16);
+            gain.gain.setValueAtTime(.035, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + .18);
+            osc.connect(gain); gain.connect(audioContext.destination);
+            osc.start(); osc.stop(audioContext.currentTime + .19);
+        } catch (e) {}
+    }
+    function frame(time) {
+        ctx.clearRect(0, 0, width, height);
+        if (!reducedMotion) {
+            if (time - lastLaunch > 850 + Math.random() * 950) {
+                launchRocket(); lastLaunch = time;
+            }
+            rockets = rockets.filter(r => r.y > r.targetY);
+            rockets.forEach(r => {
+                r.y -= r.speed;
+                ctx.beginPath(); ctx.arc(r.x, r.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${r.hue},100%,75%,.95)`; ctx.fill();
+                if (r.y <= r.targetY + r.speed) { burst(r.x, r.y, r.hue); r.y = -100; }
+            });
+            particles = particles.filter(p => p.life > 0);
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy; p.vy += .035; p.vx *= .986; p.vy *= .986; p.life--;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${p.hue},100%,70%,${Math.max(0, p.life / p.maxLife)})`; ctx.fill();
+            });
+        }
+        requestAnimationFrame(frame);
+    }
+    if (!reducedMotion) requestAnimationFrame(frame);
+
+    const toggle = document.getElementById("soundToggle");
+    if (toggle) toggle.addEventListener("click", function () {
+        soundOn = !soundOn;
+        toggle.textContent = soundOn ? "🔊 Sound On" : "🔇 Sound Off";
+        toggle.setAttribute("aria-pressed", String(soundOn));
+        if (soundOn) playChime();
+    });
+})();
 
 </script>
 
