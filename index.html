@@ -1811,26 +1811,7 @@ function closeSitePopup() {
     siteFrame.src = "about:blank";
     document.body.style.overflow = "";
 }
- <script>
-(function () {
-    const VIDEO_URL_PATTERN =
-        /^https:\/\/stream\.aryavidya\.cc\/play\.php(?:\?|$)/i;
-
-    // PW portal ko iframe mein hi open rakho
-    window.openPWPortal = function () {
-        openSitePopup("https://stream.aryavidya.cc/");
-    };
-
-    // Video URL ko new tab mein open karne ka helper
-    window.openVideoInNewTab = function (url) {
-        if (!VIDEO_URL_PATTERN.test(url)) return false;
-
-        window.open(url, "_blank", "noopener,noreferrer");
-        return true;
-    };
-})();
-</script>
-
+ 
 function refreshSiteFrame() {
     const frame = document.getElementById("siteFrame");
     if (frame) {
